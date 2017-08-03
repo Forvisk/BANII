@@ -1,0 +1,11 @@
+create table disciplina (
+	idDisc int primary key,
+    fase int,
+    nome varchar(100)
+    );
+
+create table professor (
+	numMatr int primary key,
+    nome varchar(200)
+	);
+ 

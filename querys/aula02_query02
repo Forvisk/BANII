@@ -1,0 +1,9 @@
+create table turma (
+	idDisc int,
+    numMatr int,
+    ano int,
+    semestre int,
+    primary key (idDisc, numMatr, ano, semestre)
+    foreign key idDisc references disciplina
+    foreign key numMatr references professor
+	);
