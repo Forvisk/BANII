@@ -6,5 +6,6 @@ create table Aluno (
 	estado char(2) not null,
 	cidade varchar(100) not null,
 	cep int not null,
-	primary key (cpf)
+	primary key (cpf),
+    unique(nome)
 );

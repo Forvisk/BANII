@@ -5,6 +5,8 @@ create table Matricula (
 	sigla_disc char(10) not null,
 	semestre int not null,
 	primary key (cod_matr),
+  	-- primary key (sigla_disc, matricula, ano, semestre),
 	foreign key (sigla_disc) references Disciplina,
-	foreign key (matricula) references Inscricao
+	foreign key (matricula) references Inscricao,
+    unique (sigla_disc, matricula, ano, semestre)
 );
