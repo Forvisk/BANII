@@ -44,14 +44,14 @@ select prof.cpf, prof.nome, mat.anoSemestre, mat.numeroSemestre
 
 -- 7)   Recupere o código da disciplina, nome da disciplina, código do curso, número de alunos matriculados na disciplina 
 -- 		e a média das notas dos alunos matriculados na disciplina.
-select disc.codigo, disc.nome, cur.codigo , count(1), avg(mat.notaFinal)
+select disc.codigo, disc.nome, cur.codigo , count(1) as matriculas, ROUND(avg(mat.notaFinal), 2) as media
 	from 	( Matricula mat join  Disciplina disc on mat.codigoDisciplina = disc.codigo)
     			join Curso cur on mat.codigoCurso = cur.codigo
 	group by disc.codigo, disc.nome, cur.codigo;
 
 -- 8)   Recupere os professores do curso de Ciência da Computação, em ordem alfabética. A lista deve conter todos os atributos 
 -- 		de Professor e o código do departamento onde ele está vinculado.
-select distinct disc.codigo, prof.*
+select distinct disc.codigo as Cod_Departamento, prof.*
 	from Professor prof join Departamento dep on prof.codigoDepartamento = dep.codigo
     		join Curso cur on cur.codigoDepartamento = dep.codigo
     			join Disciplina disc on cur.codigo = disc.codigoCurso				
