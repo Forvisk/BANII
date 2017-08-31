@@ -1,4 +1,4 @@
-﻿-- Table: setor
+-- Table: setor
 
 -- DROP TABLE setor;
 
