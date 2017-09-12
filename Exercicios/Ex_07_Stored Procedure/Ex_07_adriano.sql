@@ -18,25 +18,136 @@ language sql;*/
 language plpgsql; */
 -- select insertSetor('Jo')
 --  select cods from setor order by cods desc
+
+-- 2) Função para inserção e exclusão de um Mecânico.
 /*
-2)      Função para inserção e exclusão de um Mecânico.
+create or replace function delete_Mecanico( pcodm integer) returns void as
+	$$
+    declare
+    begin
+    	delete from mecanico where codm = pcodm;
+	end;
+    $$
+language plpgsql; 
+*/
+-- 3) Função para inserção e exclusão de uma Cliente.
 
-3)      Função para inserção e exclusão de uma Cliente.
+-- 4) Função para inserção e exclusão de um Veículo.
 
-4)      Função para inserção e exclusão de um Veículo.
+-- 5) Função para inserção e exclusão de um Conserto.
+/*
+create or replace function insere_exclui_conserto( pacao int, pcodm integer, pcodv integer,
+                                                  pdata date, phora time) returns int as
+$$
+declare
+	vlinhas int default 0;
+begin
+	if (pacao = 1) then -- insert
+       	insert into conserto values( pcodm, pcodv, pdata, phora);
+    elseif (pacao = 2) then -- delete
+       	delete from conserto where codm = pcodm and codv = pcodv and data = pdata;
+    else
+    	raise notice 'Acao desconhecida';
+    end if;
+    get diagnostics vlinhas = row_count;
+    return vlinhas;
+end;
+$$
+language plpgsql;
 
-5)      Função para inserção e exclusão de um Conserto.
+select * from conserto;
+select insere_exclui_conserto( 1, 3, 4, '12/02/2017', '16:15:20');
+select insere_exclui_conserto( 1, 1, 3, '12/05/2017', '16:15:20');
+select insere_exclui_conserto( 2, 3, 4, '12/03/2017', '16:15:20');
+select insere_exclui_conserto( 55, 3, 4, '12/03/2017', '16:15:20');
+*/
 
-6)      Função para calcular a média geral de idade dos Mecânicos e Clientes.
 
-7)      Uma única função que permita fazer exclusão de um Setor, Mecânico, Cliente ou Veículo.
+-- 6) Função para calcular a média geral de idade dos Mecânicos e Clientes.
+/*
+create or replace function media_Idade() returns int as
+	$$
+    declare
+    	vidadeC float default 0;
+        vidadeM float default 0;
+    begin
+    	select avg(idade) into vidadeC from cliente;
+    	select avg(idade) into  vidadeM from mecanico;
+        return (vidadeC + vidadeM) /  2;
+	end;
+    $$
+language plpgsql;
 
-8)      Considerando que na tabela Cliente apenas codc é a chave primária, faça uma função que remova clientes com CPF repetido, deixando apenas um cadastro para cada CPF. Escolha o critério que preferir para definir qual cadastro será mantido: aquele com a menor idade, que possuir mais consertos agendados, etc. Para testar a função, não se esqueça de inserir na tabela alguns clientes com este problema.
+select media_Idade();
+*/
+-- 7) Uma única função que permita fazer exclusão de um Setor, Mecânico, Cliente ou Veículo.
+/*
+create or replace function exclusao( pacao int, pcod integer) returns int as
+$$
+declare
+	vlinhas int default 0;
+begin
+	if( pacao = 1) then -- setor
+    	delete from setor where cods = pcod;
+    elseif (pacao = 2) then -- mecanico
+    	delete from mecanico where codm = pcod;
+    elseif (pacao = 3) then -- cliente
+    	delete from cliente where codc = pcod;
+    elseif (pacao = 4) then -- veiculo
+    	delete from veiculo where codv = pcodv;
+    else
+    	raise notice 'Acao desconhecida';
+    end if;
+    get diagnostics vlinhas = row_count;
+    return vlinhas;
+end;
+$$
+language plpgsql;
 
-9)   Função para calcular se o CPF é válido*.
+select * from mecanico
+select * from 
+select exclusao(2, 1)
+*/
+-- 8) Considerando que na tabela Cliente apenas codc é a chave primária, faça uma função que remova clientes com 
+-- CPF repetido, deixando apenas um cadastro para cada CPF. Escolha o critério que preferir para definir qual cadastro 
+-- será mantido: aquele com a menor idade, que possuir mais consertos agendados, etc. Para testar a função, 
+-- não se esqueça de inserir na tabela alguns clientes com este problema.
+/*insert into cliente values (13, '20000201200', 'Cao', 5, 'Toco', 'Casa'),
+(9, '20000200000', 'Guri', 40, 'Lost', 'Rio Branco'),
+(10, '20000200000', 'PEixe', 40, 'Fundo do', 'Rio Branco'),
+(11, '20000200000', 'Fritz', 40, 'Beer', 'Blumenau'),
+(12, '20000200000', 'Jao', 40, 'Jirai', 'Kong')*/
 
-10)   Função que calcula a quantidade de horas extras de um mecânico em um mês de trabalho. O número de horas extras é calculado a partir das horas que excedam as 160 horas de trabalho mensais. O número de horas mensais trabalhadas é calculada a partir dos consertos realizados. Cada conserto tem a duração de 1 hora.
+select * from cliente
 
+create or replace function remove_cpf_repetido() returns int as
+$$
+declare
+	vcpf char(11);
+	vlinha record;
+    vlinhaNcon record;
+    vcodsave integer default null;
+    vcodc integer default null;
+    vMnumcon int default 0;
+begin
+	for vlinha in select cpf ,count(1) from cliente group by cpf having count(1) > 1 loop
+    	vcpf := vlinha.cpf;
+        for vlinhaNcon in select cli.codc, count(1) as nCon from cliente cli join veiculo using(codc) 
+        												join conserto using(codv)
+                                                  -- where cli.cpf = vcpf
+       	                                          group by cli.codc loop
+        	if ( vlinhaNcon.nCon > vMnumcon) then
+            	vcodsave := vlinhaNcon.codc;
+            delete from cliente where codc != vcodsave and cpf = vcpf;
+end;
+$$
+language plpgsql;
+
+-- 9) Função para calcular se o CPF é válido*.
+
+
+-- 10) Função que calcula a quantidade de horas extras de um mecânico em um mês de trabalho. O número de horas extras é calculado a partir das horas que excedam as 160 horas de trabalho mensais. O número de horas mensais trabalhadas é calculada a partir dos consertos realizados. Cada conserto tem a duração de 1 hora.
+/*
 * Como calcular se o CPF é válido:
 
 O CPF é composto por onze algarismos, onde os dois últimos são chamados de dígitos verificadores, ou seja, os dois últimos dígitos são criados a partir dos nove primeiros. O cálculo é feito em duas etapas utilizando o módulo de divisão 11. Para exemplificar melhor será usado um CPF hipotético, por exemplo, 222.333.444-XX.
