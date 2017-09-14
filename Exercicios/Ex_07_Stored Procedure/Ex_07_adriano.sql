@@ -31,6 +31,19 @@ create or replace function delete_Mecanico( pcodm integer) returns void as
 language plpgsql; 
 */
 -- 3) Função para inserção e exclusão de uma Cliente.
+create or replace function insere_exclui_cliente( pcodc integer, 
+                                                 pnome char varying(50), 
+                                                 pidade int, 
+                                                 pendereco char varying(500), 
+                                                 pcidade char varying(500))
+                                                 returns void as
+$$
+declare
+begin
+end;
+$$
+language plpgsql;
+
 
 -- 4) Função para inserção e exclusão de um Veículo.
 
@@ -112,41 +125,14 @@ select exclusao(2, 1)
 -- CPF repetido, deixando apenas um cadastro para cada CPF. Escolha o critério que preferir para definir qual cadastro 
 -- será mantido: aquele com a menor idade, que possuir mais consertos agendados, etc. Para testar a função, 
 -- não se esqueça de inserir na tabela alguns clientes com este problema.
-/*insert into cliente values (13, '20000201200', 'Cao', 5, 'Toco', 'Casa'),
-(9, '20000200000', 'Guri', 40, 'Lost', 'Rio Branco'),
-(10, '20000200000', 'PEixe', 40, 'Fundo do', 'Rio Branco'),
-(11, '20000200000', 'Fritz', 40, 'Beer', 'Blumenau'),
-(12, '20000200000', 'Jao', 40, 'Jirai', 'Kong')*/
 
-select * from cliente
-
-create or replace function remove_cpf_repetido() returns int as
-$$
-declare
-	vcpf char(11);
-	vlinha record;
-    vlinhaNcon record;
-    vcodsave integer default null;
-    vcodc integer default null;
-    vMnumcon int default 0;
-begin
-	for vlinha in select cpf ,count(1) from cliente group by cpf having count(1) > 1 loop
-    	vcpf := vlinha.cpf;
-        for vlinhaNcon in select cli.codc, count(1) as nCon from cliente cli join veiculo using(codc) 
-        												join conserto using(codv)
-                                                  -- where cli.cpf = vcpf
-       	                                          group by cli.codc loop
-        	if ( vlinhaNcon.nCon > vMnumcon) then
-            	vcodsave := vlinhaNcon.codc;
-            delete from cliente where codc != vcodsave and cpf = vcpf;
-end;
-$$
-language plpgsql;
 
 -- 9) Função para calcular se o CPF é válido*.
 
 
--- 10) Função que calcula a quantidade de horas extras de um mecânico em um mês de trabalho. O número de horas extras é calculado a partir das horas que excedam as 160 horas de trabalho mensais. O número de horas mensais trabalhadas é calculada a partir dos consertos realizados. Cada conserto tem a duração de 1 hora.
+-- 10) Função que calcula a quantidade de horas extras de um mecânico em um mês de trabalho. O número de horas extras é 
+-- 		calculado a partir das horas que excedam as 160 horas de trabalho mensais. O número de horas mensais trabalhadas 
+-- 		é calculada a partir dos consertos realizados. Cada conserto tem a duração de 1 hora.
 /*
 * Como calcular se o CPF é válido:
 
