@@ -143,3 +143,5 @@ INSERT INTO conserto VALUES (1, 1, '12/06/2014', '14:00'),
 (3, 3, '12/06/2014', '10:00'),
 (3, 4, '19/06/2014', '13:00'),
 (4, 4, '20/06/2014', '13:00');
+
+insert into cliente values(8, '09502422929', 'Adriano Zanella Junior', 21, 'Nether', 'Nehter');
