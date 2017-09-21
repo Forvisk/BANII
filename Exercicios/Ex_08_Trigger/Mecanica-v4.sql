@@ -111,11 +111,14 @@ INSERT INTO setor VALUES (1, 'Elétrica'),
 (3, 'Funilaria'),
 (4, 'Pintura');
 
-INSERT INTO mecanico VALUES (1, '10000100000', 'João', 40, 'América', 'Joinville', 'som', 1),
+INSERT INTO mecanico VALUES (1, '09502422929', 'João', 40, 'América', 'Joinville', 'som', 1),
 (2, '10000110000', 'Luiz', 42, 'Vila Nova', 'Joinville', 'motor', 2),
 (3, '11000100000', 'Pedro', 51, 'Cobrasol', 'São José', 'câmbio', 2),
 (4, '11000110000', 'Carlos', 28, 'Trindade', 'Florianópolis', 'estofado', null),
-(5, '11000111000', 'Márcio', 33, 'Pantanal', 'Florianópolis', 'desamassa', 3);
+(5, '11000111000', 'Márcio', 33, 'Pantanal', 'Florianópolis', 'desamassa', 3),
+(6, '11000111000', 'Golçallvez', 33, 'Pantanal', 'Florianópolis', 'câmbio', 3),
+(7, '11000111000', 'JOelison', 33, 'Pantanal', 'Florianópolis', 'som', 3),
+(8, '11000111000', 'Bolsa', 33, 'Pantanal', 'Florianópolis', 'motor', 3);
 
 INSERT INTO cliente VALUES (1, '20000200000', 'Ana', 20, 'América', 'Joinville'),
 (2, '20000220000', 'Paulo', 24, 'Saguaçú', 'Joinville'),

@@ -31,6 +31,7 @@ create or replace function delete_Mecanico( pcodm integer) returns void as
 language plpgsql; 
 */
 -- 3) Função para inserção e exclusão de uma Cliente.
+/*
 create or replace function insere_exclui_cliente( popcao int,
     											 pcodc integer, 
                                                  pnome char varying(50), 
@@ -52,8 +53,9 @@ end;
 $$
 language plpgsql;
 
-
+*/
 -- 4) Função para inserção e exclusão de um Veículo.
+/*
 create or replace function insere_exclui_veiculo( popcao int,
     											 pcodv integer, 
                                                  prenavan char(50),
@@ -76,6 +78,8 @@ begin
 end;
 $$
 language plpgsql;
+
+*/
 -- 5) Função para inserção e exclusão de um Conserto.
 /*
 create or replace function insere_exclui_conserto( pacao int, pcodm integer, pcodv integer,
@@ -261,19 +265,26 @@ language plpgsql;
 -- 10) Função que calcula a quantidade de horas extras de um mecânico em um mês de trabalho. O número de horas extras é 
 -- 		calculado a partir das horas que excedam as 160 horas de trabalho mensais. O número de horas mensais trabalhadas 
 -- 		é calculada a partir dos consertos realizados. Cada conserto tem a duração de 1 hora.
-create or replace function calcual_hora_extra( pcodm integer, pmes int) returns  time without time zone as
+/*
+create or replace function calcula_hora_extra( pcodm integer, pmes int) returns int as
 $$
 declare
-	vhoratrab time without time zone default 0;
+	-- vhoratrab time without time zone default '00:00';
+    -- vhoramax time without time zone default '160:00';
+    vhoratrab int default 0;
 begin
-	select sum(hora) into vhoratrab from conserto where codm = pcodm and date_part('month', data) = pmes group by codm, date_part('month', data);
+	select cast(sum(hora) as integer) into vhoratrab from conserto where codm = pcodm and cast(date_part('month', data) as integer) = pmes group by codm, date_part('month', data);
     if( vhoratrab > 0) then
-    	return 
+    	return vhoratrab - 160;
+    end if;
+    return vhoratrab;
 end;
 $$
 language plpgsql;
 
 -- select codm, date_part('month', data), sum(hora) from conserto group by codm, date_part('month', data);
+select calcula_hora_extra( codm, 6) from mecanico
+*/
 /*
 * Como calcular se o CPF é válido:
 O CPF é composto por onze algarismos, onde os dois últimos são chamados de dígitos verificadores, ou seja, 
