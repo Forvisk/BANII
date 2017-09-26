@@ -254,13 +254,16 @@ select * from cliente;
 
 -- 7) Gatilho para impedir que um conserto seja inserido na tabela Conserto se o mecânico já realizou mais de 20 horas 
 -- 	extras no mês.
+/*
 create or replace function bloqueia_hora_extra() returns trigger as
 $$
 declare
+	vquanthr int default 0;
 begin
-	if (select sum(hora) from conseto 
+	select count(1) into vquanthr from conserto 
         where codm = new.codm and date_part('month', data) = date_part('month', new.data) 
-        group by codm, date_part('month', data)) > '20:00' then
+        group by codm, date_part('month', data);
+    If (vquanthr > 5) then
         raise EXCEPTION 'Limite de horas atingido';
     else
     	return new;
@@ -269,5 +272,41 @@ end;
 $$
 language plpgsql;
 
-create trigger bloqueia_hora_extra after insert on conserto 
+create trigger bloqueia_hora_extra before insert on conserto 
 	for each row execute procedure bloqueia_hora_extra();
+select * from conserto
+select codm, count(1), date_part('month', data) from conserto group by codm, date_part('month', data)
+insert into conserto values(4,2,'01/06/2017', '15:14')
+*/
+
+-- Extra -- 26/09/2017
+-- Gatilho para impedir que mais de um conserto seja agendado no mesmo setor na mesma hora.
+
+create or replace function bloqueia_conserto_mesma_hora() returns trigger as
+$$
+declare
+	vcods int;
+begin
+	select cods into vcods from mecanico where new.codm = codm;
+    if( select 1 from conserto join mecanico using(codm) 
+    		where data = new.data and date_part('hour', hora) = date_part('hour',new.hora) and (cods = vcods or codm = new.codm) group by 1) then
+    	raise exception 'Setor já alocado para as %h', date_part('hour', new.hora);
+    else
+    	return new;
+    end if;
+end;
+$$
+language plpgsql;
+
+create trigger bloqueia_conserto_mesma_hora before insert on conserto
+	for each row execute procedure bloqueia_conserto_mesma_hora();
+
+select codm, cods from mecanico
+select cods, con.* from conserto con join mecanico using(codm)
+select 1 from conserto join mecanico using(codm) 
+	where data = '14/06/2014' and date_part('hour', hora) = '17' and cods = 2
+
+insert into conserto values (4, 3, '20/06/2014', '13:00')
+insert into conserto values (4, 2, '20/06/2014', '13:00')
+
+delete from conserto where codm = 4 and data != '20/06/2014'

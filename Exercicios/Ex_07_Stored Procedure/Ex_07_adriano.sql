@@ -273,11 +273,11 @@ declare
     -- vhoramax time without time zone default '160:00';
     vhoratrab int default 0;
 begin
-	select cast(sum(hora) as integer) into vhoratrab from conserto where codm = pcodm and cast(date_part('month', data) as integer) = pmes group by codm, date_part('month', data);
-    if( vhoratrab > 0) then
+	select count(1) into vhoratrab from conserto where codm = pcodm and cast(date_part('month', data) as integer) = pmes group by codm, date_part('month', data);
+    if( vhoratrab > 160) then
     	return vhoratrab - 160;
     end if;
-    return vhoratrab;
+    return 0;
 end;
 $$
 language plpgsql;
