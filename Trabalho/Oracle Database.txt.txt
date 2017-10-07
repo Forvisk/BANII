@@ -1,0 +1,9 @@
+Oracle Express
+http://www.oracle.com/technetwork/database/database-technologies/express-edition/overview/index.html
+help:
+https://docs.oracle.com/cd/E17781_01/index.htm
+
+Oracle Developer
+http://www.oracle.com/technetwork/developer-tools/sql-developer/overview/index.html
+help:
+http://docs.oracle.com/database/sql-developer-17.2/index.html
