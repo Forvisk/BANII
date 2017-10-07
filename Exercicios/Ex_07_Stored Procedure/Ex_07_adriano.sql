@@ -1,12 +1,12 @@
 
 -- 1) Função para inserção e exclusão de um Setor.
-/*create or replace function insertSetor( pCodS int, pNome varchar) returns void as
+create or replace function insertSetor( pCodS int, pNome varchar) returns void as
 	$$
     insert into setor values ( pCodS, pNome);
 	$$
-language sql;*/
+language sql;
 -- select insertSetor( 5, 'Estoque');
-/*create or replace function insertSetor( pNome varchar) returns void as
+create or replace function insertSetor( pNome varchar) returns void as
 	$$
     declare iCodS setor.cods%type;
     begin
@@ -15,12 +15,13 @@ language sql;*/
         
 	end;
     $$
-language plpgsql; */
--- select insertSetor('Jo')
---  select cods from setor order by cods desc
+language plpgsql;
+
+    select insertSetor('Jo');
+    select cods from setor order by cods desc;
 
 -- 2) Função para inserção e exclusão de um Mecânico.
-/*
+
 create or replace function delete_Mecanico( pcodm integer) returns void as
 	$$
     declare
@@ -29,16 +30,16 @@ create or replace function delete_Mecanico( pcodm integer) returns void as
 	end;
     $$
 language plpgsql; 
-*/
+
 -- 3) Função para inserção e exclusão de uma Cliente.
-/*
+
 create or replace function insere_exclui_cliente( popcao int,
     											 pcodc integer, 
                                                  pnome char varying(50), 
                                                  pidade int, 
                                                  pendereco char varying(500), 
                                                  pcidade char varying(500))
-                                                 returns void as
+returns void as
 $$
 declare
 begin
@@ -53,9 +54,9 @@ end;
 $$
 language plpgsql;
 
-*/
+
 -- 4) Função para inserção e exclusão de um Veículo.
-/*
+
 create or replace function insere_exclui_veiculo( popcao int,
     											 pcodv integer, 
                                                  prenavan char(50),
@@ -79,9 +80,9 @@ end;
 $$
 language plpgsql;
 
-*/
+
 -- 5) Função para inserção e exclusão de um Conserto.
-/*
+
 create or replace function insere_exclui_conserto( pacao int, pcodm integer, pcodv integer,
                                                   pdata date, phora time) returns int as
 $$
@@ -106,11 +107,11 @@ select insere_exclui_conserto( 1, 3, 4, '12/02/2017', '16:15:20');
 select insere_exclui_conserto( 1, 1, 3, '12/05/2017', '16:15:20');
 select insere_exclui_conserto( 2, 3, 4, '12/03/2017', '16:15:20');
 select insere_exclui_conserto( 55, 3, 4, '12/03/2017', '16:15:20');
-*/
+
 
 
 -- 6) Função para calcular a média geral de idade dos Mecânicos e Clientes.
-/*
+
 create or replace function media_Idade() returns int as
 	$$
     declare
@@ -125,9 +126,9 @@ create or replace function media_Idade() returns int as
 language plpgsql;
 
 select media_Idade();
-*/
+
 -- 7) Uma única função que permita fazer exclusão de um Setor, Mecânico, Cliente ou Veículo.
-/*
+
 create or replace function exclusao( pacao int, pcod integer) returns int as
 $$
 declare
@@ -153,12 +154,12 @@ language plpgsql;
 select * from mecanico
 select * from 
 select exclusao(2, 1)
-*/
+
 -- 8) Considerando que na tabela Cliente apenas codc é a chave primária, faça uma função que remova clientes com 
 -- CPF repetido, deixando apenas um cadastro para cada CPF. Escolha o critério que preferir para definir qual cadastro 
 -- será mantido: aquele com a menor idade, que possuir mais consertos agendados, etc. Para testar a função, 
 -- não se esqueça de inserir na tabela alguns clientes com este problema.
-/*
+
 create or replace function remove_cliente_cpf_repetido() returns int as
 $$
 declare
@@ -182,10 +183,10 @@ begin
 end;
 $$
 language plpgsql;
-*/
+
 -- select * from cliente;
 -- select remove_cliente_cpf_repetido();
-/*
+
 insert into cliente values
 (8, '20000200000', 'An Ga', 20, 'América', 'Joinville'),
 (9, '20000220000', 'Paulo G', 24, 'Saguaçú', 'Joinville'),
@@ -203,10 +204,10 @@ insert into cliente values
 (21, '10000110000', 'Luiz GH', 42, 'Vila Nova', 'Joinville');
 
 update cliente set idade = idade + 5 where codc >= 8;
-*/
+
 
 -- 9) Função para calcular se o CPF é válido*.
-/*
+
 create or replace function valida_cpf( pcpf char(11)) returns boolean as
 $$
 declare
@@ -258,14 +259,14 @@ begin
 end;
 $$
 language plpgsql;
-*/
+
 -- select valida_cpf( cpf) from cliente -- where codc = 8;
 -- insert into cliente values(8, '09502422929', 'Adriano Zanella Junior', 21, 'Nether', 'Nehter');
 
 -- 10) Função que calcula a quantidade de horas extras de um mecânico em um mês de trabalho. O número de horas extras é 
 -- 		calculado a partir das horas que excedam as 160 horas de trabalho mensais. O número de horas mensais trabalhadas 
 -- 		é calculada a partir dos consertos realizados. Cada conserto tem a duração de 1 hora.
-/*
+
 create or replace function calcula_hora_extra( pcodm integer, pmes int) returns int as
 $$
 declare
@@ -284,7 +285,8 @@ language plpgsql;
 
 -- select codm, date_part('month', data), sum(hora) from conserto group by codm, date_part('month', data);
 select calcula_hora_extra( codm, 6) from mecanico
-*/
+
+
 /*
 * Como calcular se o CPF é válido:
 O CPF é composto por onze algarismos, onde os dois últimos são chamados de dígitos verificadores, ou seja, 
