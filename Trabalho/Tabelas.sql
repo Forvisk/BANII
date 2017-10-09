@@ -19,15 +19,24 @@ CREATE TABLE developer.Quarto(
     qua_in_codquarto NUMBER(9,9) PRIMARY KEY,
     qua_in_numero NUMBER(4,4) NOT NULL,
     hot_in_codhotel NUMBER(6,6) NOT NULL,
-    qua_st_local VARCHAR2(50 CHAR) NOT NULL,
-    qua_st_tipo VARCHAR2(2 CHAR) DEFAULT 'S' NOT NULL,
-	-- SI = Single, CA = Casal, SU = Suite, DU = Duplo
+    qua_in_local VARCHAR2(50 CHAR) NOT NULL,
+    qua_st_tipo NUMBER(9,9) NOT NULL,	
     qua_fl_diaria NUMBER DEFAULT 100 NOT NULL,
     FOREIGN KEY (hot_in_codhotel)
         REFERENCES developer.hotel(hot_in_codhotel) 
-        ON DELETE CASCADE
+        ON DELETE CASCADE,
+    FOREIGN KEY (qua_st_tipo)
+	REFERENCES developer.TipoQuarto(tipo_codigo)
+	ON DELETE CASCADE
 );
 -- drop table developer.Quarto;
+
+-- SI = Single, CA = Casal, SU = Suite, DU = Duplo
+CREATE TABLE developer.TipoQuarto(
+    tipo_codigo NUMBER(9,9) PRIMARY KEY,
+    tipo_nome VARCHAR(2 CHAR) NOT NULL
+);
+-- drop table developer.TipoQuarto;
 
 CREATE TABLE developer.Reserva(
 	res_in_codreserva NUMBER(9,9) PRIMARY KEY,
@@ -77,7 +86,7 @@ CREATE TABLE developer.Servico(
 	sev_fl_preco NUMBER DEFAULT 0 NOT NULL,
 	sev_st_descricao VARCHAR2(100 CHAR) NOT NULL,
 	sev_st_tipo CHAR(1 CHAR) DEFAULT 'N' NOT NULL
-	-- N = n„o de limpeza, L = seviÁo de limpeza
+	-- N = n√£o de limpeza, L = sevi√ßo de limpeza
 );
 -- drop table developer.Servico;
 CREATE TABLE developer.Servico_prestado( 
