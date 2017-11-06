@@ -102,13 +102,13 @@ end;
 $$
 language plpgsql;
 
+/*
 select * from conserto;
 select insere_exclui_conserto( 1, 3, 4, '12/02/2017', '16:15:20');
 select insere_exclui_conserto( 1, 1, 3, '12/05/2017', '16:15:20');
 select insere_exclui_conserto( 2, 3, 4, '12/03/2017', '16:15:20');
 select insere_exclui_conserto( 55, 3, 4, '12/03/2017', '16:15:20');
-
-
+*/
 
 -- 6) Função para calcular a média geral de idade dos Mecânicos e Clientes.
 
