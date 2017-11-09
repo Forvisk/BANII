@@ -8,18 +8,14 @@ yyyy : nome do campo
 */
 
 CREATE TABLE developer.Quarto(
-    qua_in_codquarto NUMBER(9,9) PRIMARY KEY,
-    qua_in_numero NUMBER(4,4) NOT NULL,
-    hot_in_codhotel NUMBER(6,6) NOT NULL,
-    qua_in_local VARCHAR2(50 CHAR) NOT NULL,
-    tqu_in_codigo NUMBER(6,6),	
+    qua_in_codquarto NUMBER PRIMARY KEY,
+    qua_in_numero NUMBER NOT NULL,
+    qua_in_local VARCHAR2(50 CHAR) NOT NULL,	
     qua_fl_diaria NUMBER DEFAULT 100 NOT NULL,
-    /*FOREIGN KEY (hot_in_codhotel)
-        REFERENCES developer.hotel(hot_in_codhotel) 
-        ON DELETE CASCADE,
-    FOREIGN KEY (tqu_in_codigo)
-		REFERENCES developer.TipoQuarto(tqu_in_codigo)
-		ON DELETE SET NULL*/
+
+    tqu_in_codigo NUMBER,
+    hot_in_codhotel NUMBER NOT NULL,
+
 	FOREIGN KEY (hot_in_codhotel)
         REFERENCES developer.hotel(hot_in_codhotel),
     FOREIGN KEY (tqu_in_codigo)
@@ -28,23 +24,20 @@ CREATE TABLE developer.Quarto(
 -- drop table developer.Quarto;
 
 CREATE TABLE developer.Reserva(
-	res_in_codreserva NUMBER(9,9) PRIMARY KEY,
-	cli_in_codcliente NUMBER(9,9) NOT NULL,
-	qua_in_codquarto NUMBER(9,9),
-	res_dt_dtReserva DATE,
+	res_in_codreserva NUMBER PRIMARY KEY,
+	res_dt_dtReserva TIMESTAMP DEFAULT SYSDATE NOT NULL,
 	res_dt_dtentrada DATE,	-- Data de check-in previsto
 	res_dt_dtsaida DATE,	-- Data de check-out previsto
 	res_dt_dtpagamento DATE,
-	--res_st_confirma CHAR(1 CHAR) DEFAULT 'E',
-	res_st_estado CHAR(1 CHAR) DEFAULT 'E',
-	res_st_camaextra CHAR(1 CHAR),
-	/*FOREIGN KEY (cli_in_codcliente)
-		REFERENCES developer.Cliente(cli_in_codcliente)
-		ON DELETE CASCADE,
-	FOREIGN KEY (qua_in_codquarto)
-		REFERENCES developer.Quarto(qua_in_codquarto)
-		ON DELETE SET NULL*/
-		FOREIGN KEY (cli_in_codcliente)
+
+	res_st_estado VARCHAR2(1 CHAR) DEFAULT 'E' NOT NULL,
+	res_st_camaextra VARCHAR2(1 CHAR) DEFAULT 'N' NOT NULL,
+
+
+	cli_in_codcliente NUMBER NOT NULL,
+	qua_in_codquarto NUMBER NOT NULL,
+
+	FOREIGN KEY (cli_in_codcliente)
 		REFERENCES developer.Cliente(cli_in_codcliente),
 	FOREIGN KEY (qua_in_codquarto)
 		REFERENCES developer.Quarto(qua_in_codquarto)
@@ -60,46 +53,54 @@ CREATE TABLE developer.Reserva(
 
 
 CREATE TABLE developer.Estadia(
-	est_in_codestadia NUMBER(9,9) PRIMARY KEY,
-	cli_in_codcliente NUMBER(9,9) DEFAULT '000000000' NOT NULL,
-	qua_in_codquarto NUMBER(9,9),
-	est_dt_dtcheckin DATE,
-	est_dt_dtcheckout DATE,
-	res_in_codreserva NUMBER(9,9),
-	/*FOREIGN KEY (cli_in_codcliente)
-		REFERENCES developer.Cliente(cli_in_codcliente)
-		ON DELETE CASCADE,*/
+	est_in_codestadia NUMBER PRIMARY KEY,
+	est_dt_dtcheckin TIMESTAMP DEFAULT SYSDATE NOT NULL,
+	est_dt_dtcheckout TIMESTAMP,
+
+	
+	cli_in_codcliente NUMBER NOT NULL,
+	qua_in_codquarto NUMBER,
+	res_in_codreserva NUMBER,
+
 	FOREIGN KEY (cli_in_codcliente)
 		REFERENCES developer.Cliente(cli_in_codcliente),
-	/*FOREIGN KEY (qua_in_codquarto)
-		REFERENCES developer.Quarto(qua_in_codquarto)
-		ON DELETE SET NULL,*/
 	FOREIGN KEY (qua_in_codquarto)
 		REFERENCES developer.Quarto(qua_in_codquarto),
-	/*FOREIGN KEY (res_in_codreserva)
-		REFERENCES developer.Reserva(res_in_codreserva)
-		ON DELETE SET NULL*/
 	FOREIGN KEY (res_in_codreserva)
 		REFERENCES developer.Reserva(res_in_codreserva)
 );
 -- drop table developer.Estadia;
 
+
+CREATE TABLE developer.Empregado(
+	epg_in_codempregado NUMBER PRIMARY KEY,
+	epg_st_nome VARCHAR2(40 CHAR) NOT NULL,
+
+	epg_st_estado VARCHAR(1 CHAR) DEFAULT 'A' NOT NULL,
+
+    hot_in_codhotel NUMBER NOT NULL,
+
+    FOREIGN KEY (hot_in_codhotel)
+    	REFERENCES developer.hotel(hot_in_codhotel)
+);
+-- drop table developer.Empregado;
+
 CREATE TABLE developer.Servico_prestado( 
-	svp_in_codservicopre NUMBER(9,9) PRIMARY KEY,
-	sev_in_codservico NUMBER(6,6) NOT NULL,
-	epg_in_codempregado NUMBER(9,9) NOT NULL,
-	svp_dt_dtservico DATE NOT NULL,
-	svp_dt_hrservico DATE NOT NULL,
-	svp_st_concluido CHAR(1 CHAR) DEFAULT 'N' NOT NULL,
-	/*FOREIGN KEY (sev_in_codservico)
-		REFERENCES developer.Servico(sev_in_codservico)
-		ON DELETE CASCADE,
-	FOREIGN KEY (epg_in_codempregado)
-		REFERENCES developer.Empregado(epg_in_codempregado)
-		ON DELETE CASCADE*/
+	svp_in_codservicopre NUMBER PRIMARY KEY,
+	svp_dt_dtservico TIMESTAMP NOT NULL,
+	svp_st_concluido VARCHAR2(1 CHAR) DEFAULT 'N' NOT NULL,
+
+	svp_st_cortesia VARCHAR2(1 CHAR) DEFAULT 'N' NOT NULL,
+
+	sev_in_codservico NUMBER NOT NULL,
+	epg_in_codempregado NUMBER NOT NULL,
+	est_in_codestadia NUMBER NOT NULL,
+
 	FOREIGN KEY (sev_in_codservico)
 		REFERENCES developer.Servico(sev_in_codservico),
 	FOREIGN KEY (epg_in_codempregado)
-		REFERENCES developer.Empregado(epg_in_codempregado)
+		REFERENCES developer.Empregado(epg_in_codempregado),
+	FOREIGN KEY (est_in_codestadia)
+		REFERENCES developer.Estadia(est_in_codestadia)
 );
 -- drop table developer.Servico_prestado;
