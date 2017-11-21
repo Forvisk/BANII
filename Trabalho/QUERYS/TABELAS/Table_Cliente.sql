@@ -1,0 +1,30 @@
+CREATE TABLE Cliente(
+	cli_pk_codigo NUMBER PRIMARY KEY,
+	cli_st_nome VARCHAR2(100 CHAR) NOT NULL,
+	cli_st_telefone VARCHAR2(12 CHAR),
+	cli_st_cpf VARCHAR2(11 CHAR) NOT NULL,
+	cli_st_endereco VARCHAR2(150 CHAR)
+);
+
+CREATE SEQUENCE cli_pk
+	START WITH 1
+	INCREMENT BY 1
+	NOMAXVALUE
+	NOCACHE
+	NOCYCLE;
+	
+CREATE OR REPLACE TRIGGER Cliente_pk
+BEFORE INSERT ON Cliente
+FOR EACH ROW
+
+BEGIN
+	SELECT cli_pk.NEXTVAL
+	INTO :new.cli_pk_codigo
+	FROM DUAL;
+END;
+
+/*
+DROP TRIGGER Cliente_pk;
+DROP SEQUENCE cli_pk;
+DROP TABLE Cliente;
+*/

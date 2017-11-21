@@ -1,0 +1,29 @@
+CREATE TABLE Servico(
+	sev_pk_codigo NUMBER PRIMARY KEY,
+	sev_st_tipo CHAR(1 CHAR) DEFAULT 'N' NOT NULL,
+	sev_st_descricao VARCHAR2(200 CHAR),
+	sev_fl_preco NUMBER DEFAULT 0 NOT NULL
+);
+
+CREATE SEQUENCE sev_pk
+	START WITH 1
+	INCREMENT BY 1
+	NOMAXVALUE
+	NOCACHE
+	NOCYCLE;
+
+CREATE OR REPLACE TRIGGER Servico_pk
+BEFORE INSERT ON Servico
+FOR EACH ROW
+
+BEGIN
+	SELECT sev_pk.NEXTVAL
+	INTO :new.sev_pk_codigo
+	FROM DUAL;
+END;
+
+/*
+DROP TRIGGER Servico_pk;
+DROP SEQUENCE sev_pk;
+DROP TABLE Servico;
+*/
