@@ -10,17 +10,24 @@ CREATE TABLE Reserva(
 	
 	res_dt_checkin DATE NOT NULL,
 	res_dt_checkout DATE NOT NULL,
+	res_st_camaextra CHAR(1) DEfAULT 'N' NOT NULL,
+	-- res_st_camaextra: N = Não; S = Sim;
+	res_st_estado CHAR(1) DEFAULT 'E' NOT NULL,
+	-- res_st_estado: E = Espera de pagamento; S = Aceito o pagamento;
+	--	C = Cancelado (pelo cliente); A = Anulado (não pago após 48 horas);
 	
 	FOREIGN KEY (qua_fk_numero,hot_fk_codigo)
-		REFERENCES Quarto(qua_pk_numero,hot_fk_codigo),
+		REFERENCES Quarto(qua_pk_numero,hot_pfk_codigo),
 	FOREIGN KEY (cli_fk_codigo)
 		REFERENCES Cliente(cli_pk_codigo)
 );
 
+/*
 ALTER TABLE Reserva ADD(
 	res_st_camaextra CHAR(1),
 	res_st_estado CHAR(1)
 );
+*/
 
 CREATE SEQUENCE res_pk
 	START WITH 1

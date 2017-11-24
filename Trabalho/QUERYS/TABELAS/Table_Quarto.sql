@@ -4,11 +4,11 @@ CREATE TABLE Quarto(
     qua_in_local VARCHAR2(50 CHAR) NOT NULL,
 
     tqu_fk_codigo NUMBER,
-    hot_fk_codigo NUMBER NOT NULL,
+    hot_pfk_codigo NUMBER NOT NULL,
 	
-	PRIMARY KEY (qua_pk_numero, hot_fk_codigo),
+	PRIMARY KEY (qua_pk_numero, hot_pfk_codigo),
 
-	FOREIGN KEY (hot_fk_codigo)
+	FOREIGN KEY (hot_pfk_codigo)
         REFERENCES Hotel (hot_pk_codigo),
     FOREIGN KEY (tqu_fk_codigo)
 		REFERENCES Tipo_Quarto (tqu_pk_codigo)

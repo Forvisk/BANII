@@ -11,7 +11,7 @@ CREATE TABLE Estadia(
 	
 	
 	FOREIGN KEY (qua_fk_numero,hot_fk_codigo)
-		REFERENCES Quarto(qua_pk_numero,hot_fk_codigo),
+		REFERENCES Quarto(qua_pk_numero,hot_pfk_codigo),
 	FOREIGN KEY (cli_fk_codigo)
 		REFERENCES Cliente(cli_pk_codigo),
 	FOREIGN KEY (res_fk_codigo)

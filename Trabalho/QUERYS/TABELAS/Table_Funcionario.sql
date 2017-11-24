@@ -4,7 +4,10 @@ CREATE TABLE Funcionario(
 	fun_st_telefone VARCHAR2(12 CHAR),
 	fun_st_cpf VARCHAR2(11 CHAR) NOT NULL,
 	fun_st_endereco VARCHAR2(150 CHAR),
-	fun_st_cargo VARCHAR2(20 CHAR)
+	fun_st_cargo VARCHAR2(20 CHAR),
+	fun_st_estado CHAR(1 CHAR) DEFAULT 'A' NOT NULL
+	-- fun_st_estado: A = Ativo; L = Licença; D = Demitido/Inativo;
+	
 );
 
 CREATE SEQUENCE fun_pk

@@ -2,9 +2,11 @@ CREATE TABLE Servico_Prestado(
 	svp_pk_codigo NUMBER PRIMARY KEY,
 	
 	svp_dt_dtservico TIMESTAMP NOT NULL,
-	svp_st_concluido VARCHAR2(1 CHAR) DEFAULT 'N' NOT NULL,
-
+	
+	svp_st_concluido VARCHAR2(1 CHAR) DEFAULT 'E' NOT NULL,
+	-- svp_st_conlcuido: C = Conlcuido; E = Encaminhado/Em processo;
 	svp_st_cortesia VARCHAR2(1 CHAR) DEFAULT 'N' NOT NULL,
+	-- svp_st_cortesia: N = Não; S = Sim;
 
 	sev_fk_codigo NUMBER NOT NULL,
 	fun_fk_codigo NUMBER NOT NULL,
