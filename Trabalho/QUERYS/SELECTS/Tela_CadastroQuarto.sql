@@ -7,7 +7,9 @@ SELECT 	q.QUA_PK_NUMERO as NUMERO,
 		(	SELECT 'VAGO'
 			FROM Estadia e
 			WHERE 	e.QUA_FK_NUMERO = q.QUA_PK_NUMERO AND e.HOT_FK_CODIGO = q.HOT_PFK_CODIGO
-					AND SYSDATE BETWEEN e.est_dt_checkin and e.est_dt_checkout
+					--AND SYSDATE > e.est_dt_checkin
+					AND e.EST_DT_CHECKIN < SYSTIMESTAMP
+					AND e.est_dt_checkout IS NULL
 			GROUP BY q.QUA_PK_NUMERO, q.HOT_PFK_CODIGO) AS Estado
 FROM Quarto q join TIPO_QUARTO tq ON q.TQU_FK_CODIGO = tq.TQU_PK_CODIGO;
 /*

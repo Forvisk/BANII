@@ -12,12 +12,25 @@ FROM RESERVA R JOIN Cliente C ON R.cli_fk_codigo = C.cli_pk_codigo;
 SELECT 	E.EST_PK_CODIGO AS CODIGO,
 		E.HOT_FK_CODIGO AS HOTEL,
 		E.QUA_FK_NUMERO AS QUARTO,
-		TO_CHAR(E.EST_DT_CHECKIN,'DD/MON/YYYY-HR24:MI') AS CHECK_IN,
+		TO_CHAR(E.EST_DT_CHECKIN,'YYYY/MM/DD-HH24:MI') AS CHECK_IN,
+		TO_CHAR(E.EST_DT_CHECKOUT,'YYYY/MM/DD-HH24:MI') AS CHECK_OUT,
 		E.RES_FK_CODIGO AS RESERVA
 FROM ESTADIA E JOIN Cliente C ON E.CLI_FK_CODIGO = C.CLI_PK_CODIGO;
 
 /*
 INSERT INTO RESERVA(qua_fk_numero,hot_fk_codigo,cli_fk_codigo,res_dt_checkin,res_dt_checkout) VALUES (102, 8, 13,TO_DATE('12-DEZ-2017','DD-MON-YYYY'),TO_DATE('15-DEZ-2017','DD-MON-YYYY'));
+
+begin
+	ESTADO_RESERVA_PROC(2,'S','E');
+end;
+
 */
+INSERT INTO ESTADIA(est_pk_codigo,qua_fk_numero,hot_fk_codigo,cli_fk_codigo,res_fk_codigo,est_dt_checkin) 
+	SELECT 0,R.qua_fk_numero,R.hot_fk_codigo,R.cli_fk_codigo,R.RES_PK_CODIGO,SYSTIMESTAMP
+	FROM RESERVA R WHERE R.RES_PK_CODIGO = 2;
+
+--ALTER TABLE Estadia MODIFY est_dt_checkout TIMESTAMP NULL;
+UPDATE ESTADIA SET EST_DT_CHECKOUT = SYSTIMESTAMP WHERE EST_PK_CODIGO = 2;
+
 select * from cliente
 select * from QUarto;

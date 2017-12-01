@@ -1,13 +1,10 @@
-create or replace FUNCTION ESTADO_RESERVA 
+create or replace PROCEDURE ALT_ESTADORESERVA
 (
   PCODRESERVA IN NUMBER,
   POPERACAO IN VARCHAR2,
   PRES_ST_ESTADO IN VARCHAR2 
-) RETURN NUMBER IS
-
-	vreturn NUMBER default 0;
+) IS
 	vOpeFim VARCHAR(1);
-	
 BEGIN
 	IF POPERACAO = 'S' THEN
 		-- inicio update
@@ -33,12 +30,4 @@ BEGIN
 	FROM Reserva R 
 	WHERE PCODRESERVA = R.res_pk_codigo;
 	-- fim select
-	
-	IF vOpeFim != POPERACAO THEN
-		vreturn := 1;
-	END IF;
-	
-	RETURN vreturn;
-END ESTADO_RESERVA;
-
-drop function ESTADO_RESERVA;
+END;
