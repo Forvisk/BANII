@@ -7,7 +7,7 @@ CREATE TABLE Estadia(
 	res_fk_codigo NUMBER,
 	
 	est_dt_checkin TIMESTAMP NOT NULL,
-	est_dt_checkout TIMESTAMP NOT NULL,
+	est_dt_checkout TIMESTAMP,
 	
 	
 	FOREIGN KEY (qua_fk_numero,hot_fk_codigo)
