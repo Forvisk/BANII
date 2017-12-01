@@ -162,6 +162,7 @@ public class JanelaLogin extends javax.swing.JFrame {
         boolean temAcesso = checkLogin();
 
         if (temAcesso) {
+            Gerenciador.iniciateGerenciador();
             JanelaPrincipal jp = new JanelaPrincipal();
             jp.setLocationRelativeTo(null);
             jp.setVisible(true);
