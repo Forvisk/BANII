@@ -5,14 +5,17 @@
  */
 package clienteban2.tabelas;
 
+import clienteban2.ClienteBan2;
 import clienteban2.Gerenciador;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  *
  * @author gustavo
  */
 public class Hotel {
-    
+
     private int codigo;
     private String nome;
     private String cnpj;
@@ -20,20 +23,36 @@ public class Hotel {
     private String UF;
     private String endereco;
     private int estrelas;
-    
+
     public static Hotel criarHotel(String nome, String cnpj, String cidade, String UF, String endereco, int estrelas) throws Exception {
-        if (nome.length() < 3) throw new Exception("Verifique o nome.");
-        if (cnpj.length() != 14) throw new Exception("Verifique o CNPJ. Apenas caracteres.");
-        if (cidade.length() < 3) throw new Exception("Verifique a cidade.");
-        if (UF.length() != 2) throw new Exception("Verifique a sigla do estado.");
-        if (endereco.length() < 3) throw new Exception("Verifique o endereço.");
-        if (estrelas < 0 || estrelas > 5) throw new Exception("De 0 a 5 estrelas.");
-        
+        verificaDados(nome, cnpj, cidade, UF, endereco, estrelas);
+
         int cod = getNewCodigo();
-        
+
         return new Hotel(cod, nome, cnpj, cidade, UF, endereco, estrelas);
     }
-    
+
+    public static void verificaDados(String nome, String cnpj, String cidade, String UF, String endereco, int estrelas) throws Exception {
+        if (nome.length() < 3) {
+            throw new Exception("Verifique o nome.");
+        }
+        if (cnpj.length() != 14) {
+            throw new Exception("Verifique o CNPJ. Apenas caracteres.");
+        }
+        if (cidade.length() < 3) {
+            throw new Exception("Verifique a cidade.");
+        }
+        if (UF.length() != 2) {
+            throw new Exception("Verifique a sigla do estado.");
+        }
+        if (endereco.length() < 3) {
+            throw new Exception("Verifique o endereço.");
+        }
+        if (estrelas < 0 || estrelas > 5) {
+            throw new Exception("De 0 a 5 estrelas.");
+        }
+    }
+
     public static Hotel criarHotel(int codigo, String nome, String cnpj, String cidade, String UF, String endereco, int estrelas) throws Exception {
         return new Hotel(codigo, nome, cnpj, cidade, UF, endereco, estrelas);
     }
@@ -106,12 +125,25 @@ public class Hotel {
 
     // TODO: pegar o prox codigo disponivel
     private static int getNewCodigo() {
-       return Gerenciador.getInstancia().getHoteis().size();
+        return Gerenciador.getInstancia().getHoteis().size();
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return "Hotel: " + this.nome + ", " + this.estrelas + " estrelas, em " + this.endereco + ", " + this.cidade + " em " + this.UF;
     }
-    
+
+    public String updateQuery() throws Exception {
+        verificaDados(nome, cnpj, cidade, UF, endereco, estrelas);
+        return "UPDATE hotel SET "
+                + "hot_st_nome = \'" + this.nome + "\', "
+                + "hot_st_cnpj = \'" + this.cnpj + "\', "
+                + "hot_st_cidade = \'" + this.cidade + "\', "
+                + "hot_st_uf = \'" + this.UF + "\', "
+                + "hot_st_endereco = \'" + this.endereco + "\', "
+                + "hot_in_estrelas = \'" + this.estrelas + "\'"
+                + "WHERE hot_pk_codigo = \'" + this.codigo + "\';";
+
+    }
+
 }
