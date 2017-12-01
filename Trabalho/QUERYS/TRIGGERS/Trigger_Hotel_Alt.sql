@@ -1,0 +1,42 @@
+CREATE OR REPLACE TRIGGER HOTEL_ALT
+BEFORE INSERT OR UPDATE ON Hotel
+FOR EACH ROW
+DECLARE
+	vfound NUMBER;
+BEGIN
+	vfound := 0;
+	
+	IF INSERTING THEN
+	-- inicio select
+		SELECT COUNT(1) INTO vfound
+		FROM Hotel H
+		WHERE H.HOT_ST_CNPJ = :NEW.HOT_ST_CNPJ
+			AND ROWNUM < 2;
+		-- fim select
+		
+	END IF;
+	
+	IF UPDATING THEN
+		IF :OLD.HOT_PK_CODIGO != :NEW.HOT_PK_CODIGO THEN
+			RAISE_APPLICATION_ERROR(-20001,' Não é possivel alterar o código do hotel !! ');
+		END IF;
+		
+		-- inicio select
+		SELECT COUNT(1) INTO vfound
+		FROM Hotel H
+		WHERE 	H.HOT_PK_CODIGO != :NEW.HOT_PK_CODIGO
+				AND H.HOT_ST_CNPJ = :NEW.HOT_ST_CNPJ
+				AND ROWNUM < 2;
+		-- fim select
+		
+	END IF;
+	
+	IF vfound = 1 THEN
+		RAISE_APPLICATION_ERROR(-20001,' Cadastro duplicado !! ');
+	END IF;
+	
+	IF VALIDA_CNPJ( :NEW.HOT_ST_CNPJ) = 0 THEN
+		RAISE_APPLICATION_ERROR(-20001,' CNPJ invalido !! ');
+	END IF;
+	
+END;

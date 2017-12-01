@@ -5,8 +5,12 @@ CREATE TABLE Funcionario(
 	fun_st_cpf VARCHAR2(11 CHAR) NOT NULL,
 	fun_st_endereco VARCHAR2(150 CHAR),
 	fun_st_cargo VARCHAR2(20 CHAR),
-	fun_st_estado CHAR(1 CHAR) DEFAULT 'A' NOT NULL
+	fun_st_estado CHAR(1 CHAR) DEFAULT 'A' NOT NULL,
 	-- fun_st_estado: A = Ativo; L = Licença; D = Demitido/Inativo;
+	hot_fk_hotel NUMBER NOT NULL,
+	
+	FOREIGN KEY (hot_fk_hotel)
+		REFERENCES Hotel(hot_pk_codigo)
 	
 );
 

@@ -24,5 +24,5 @@ END;
 /*
 DROP TRIGGER tipo_quarto_pk;
 DROP SEQUENCE tqu_pk;
-DROP TABLE Tipo_Quarto
+DROP TABLE Tipo_Quarto;
 */

@@ -10,14 +10,18 @@ CREATE TABLE Servico_Prestado(
 
 	sev_fk_codigo NUMBER NOT NULL,
 	fun_fk_codigo NUMBER NOT NULL,
-	est_fk_codigo NUMBER NOT NULL,
+	est_fk_codigo NUMBER,
+	qua_fk_numero NUMBER,
+	hot_fk_hotel NUMBER,
 
 	FOREIGN KEY (sev_fk_codigo)
 		REFERENCES Servico(sev_pk_codigo),
 	FOREIGN KEY (fun_fk_codigo)
 		REFERENCES Funcionario(fun_pk_codigo),
 	FOREIGN KEY (est_fk_codigo)
-		REFERENCES Estadia(est_pk_codigo)
+		REFERENCES Estadia(est_pk_codigo),
+	FOREIGN KEY (qua_fk_numero,hot_fk_hotel)
+		REFERENCES Quarto(qua_pk_numero, hot_pfk_codigo)
 );
 
 CREATE SEQUENCE svp_fk
