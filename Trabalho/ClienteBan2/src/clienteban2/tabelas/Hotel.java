@@ -5,10 +5,8 @@
  */
 package clienteban2.tabelas;
 
-import clienteban2.ClienteBan2;
 import clienteban2.Gerenciador;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+import java.util.HashMap;
 
 /**
  *
@@ -23,6 +21,8 @@ public class Hotel {
     private String UF;
     private String endereco;
     private int estrelas;
+    private final HashMap<Integer, Quarto> quartos;
+    private final HashMap<Integer, Funcionario> funcionarios;
 
     public static Hotel criarHotel(String nome, String cnpj, String cidade, String UF, String endereco, int estrelas) throws Exception {
         verificaDados(nome, cnpj, cidade, UF, endereco, estrelas);
@@ -37,7 +37,7 @@ public class Hotel {
             throw new Exception("Verifique o nome.");
         }
         if (cnpj.length() != 14) {
-            throw new Exception("Verifique o CNPJ. Apenas caracteres.");
+            throw new Exception("Verifique o CNPJ. Apenas os 14 digitos.");
         }
         if (cidade.length() < 3) {
             throw new Exception("Verifique a cidade.");
@@ -65,6 +65,8 @@ public class Hotel {
         this.UF = UF;
         this.endereco = endereco;
         this.estrelas = estrelas;
+        this.quartos = new HashMap<>();
+        this.funcionarios = new HashMap<>();
     }
 
     public int getCodigo() {
@@ -123,14 +125,27 @@ public class Hotel {
         this.estrelas = estrelas;
     }
 
+    public HashMap<Integer, Quarto> getQuartos() {
+        return this.quartos;
+    }
+
+    public HashMap<Integer, Funcionario> getFuncionarios() {
+        return this.funcionarios;
+    }
+
     // TODO: pegar o prox codigo disponivel
     private static int getNewCodigo() {
-        return Gerenciador.getInstancia().getHoteis().size();
+        return Gerenciador.getInstancia().getHoteis().size() + 1;
     }
 
     @Override
     public String toString() {
-        return "Hotel: " + this.nome + ", " + this.estrelas + " estrelas, em " + this.endereco + ", " + this.cidade + " em " + this.UF;
+        return "Hotel( " + this.codigo + " ) : {\n\tNome: " + this.nome
+                + "\n\t" + this.estrelas + " estrelas"
+                + "\n\tEndereço: " + this.endereco + ", " + this.cidade + " em " + this.UF
+                + "\n\tCNPJ: " + this.cnpj
+                + "\n}";
+
     }
 
     public String updateQuery() throws Exception {
@@ -144,6 +159,25 @@ public class Hotel {
                 + "hot_in_estrelas = \'" + this.estrelas + "\'"
                 + "WHERE hot_pk_codigo = \'" + this.codigo + "\';";
 
+    }
+
+    public String insertQuery() throws Exception {
+        verificaDados(nome, cnpj, cidade, UF, endereco, estrelas);
+        return "INSERT INTO hotel VALUES (" + this.codigo
+                + ", \'" + this.nome + "\'"
+                + ", \'" + this.cnpj + "\'"
+                + ", \'" + this.cidade + "\'"
+                + ", \'" + this.UF + "\'"
+                + ", \'" + this.endereco + "\'"
+                + ", " + this.estrelas + ");";
+    }
+
+    public void addQuarto(Quarto quarto) {
+        this.quartos.put(quarto.getNumero(), quarto);
+    }
+
+    public void addFuncionario(Funcionario fun) {
+        this.funcionarios.put(fun.getCodigo(), fun);
     }
 
 }

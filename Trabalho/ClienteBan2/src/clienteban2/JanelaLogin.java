@@ -79,6 +79,7 @@ public class JanelaLogin extends javax.swing.JFrame {
 
         jLabel4.setText("Senha:");
 
+        sUser.setText("admin");
         sUser.setEnabled(false);
 
         bLogin.setText("Login");
@@ -89,6 +90,7 @@ public class JanelaLogin extends javax.swing.JFrame {
             }
         });
 
+        sPw.setText("admin");
         sPw.setEnabled(false);
 
         bConecta.setText("Conectar com o servidor");
@@ -163,9 +165,9 @@ public class JanelaLogin extends javax.swing.JFrame {
 
         if (temAcesso) {
             Gerenciador.iniciateGerenciador();
-            JanelaPrincipal jp = new JanelaPrincipal();
-            jp.setLocationRelativeTo(null);
-            jp.setVisible(true);
+            JanelaPrincipal.iniciateJanelaPrincipal();
+            JanelaPrincipal.getInstancia().setLocationRelativeTo(null);
+            JanelaPrincipal.getInstancia().setVisible(true);
             this.dispose();
         } else {
             JOptionPane.showMessageDialog(this, "Por favor, verifique seu usuario e sua senha!", "Senha ou Usuario errados!", JOptionPane.ERROR_MESSAGE);

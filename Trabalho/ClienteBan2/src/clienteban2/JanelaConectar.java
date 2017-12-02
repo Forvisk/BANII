@@ -73,6 +73,11 @@ public class JanelaConectar extends javax.swing.JFrame {
         jLabel6.setText("Nome do banco:");
 
         sIp.setText("localhost");
+        sIp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                sIpActionPerformed(evt);
+            }
+        });
 
         sUser.setText("gustavo");
 
@@ -165,6 +170,10 @@ public class JanelaConectar extends javax.swing.JFrame {
         String dbName = sDB.getText();
         this.makeConnection(url, dbName, user, pw);
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void sIpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_sIpActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sIpActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

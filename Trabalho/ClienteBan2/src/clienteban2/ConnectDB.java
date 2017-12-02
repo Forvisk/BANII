@@ -173,7 +173,7 @@ class ConnectDB {
             int result = st.executeUpdate(query);
             System.out.println("[ ConnectDB ] -> Execução retornou: " + result);
         } catch (SQLException ex) {
-            Logger.getLogger(ConnectDB.class.getName()).log(Level.SEVERE, null, ex);
+            throw new Exception(ex.getMessage());
         }
     }
 }
