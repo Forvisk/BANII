@@ -24,9 +24,6 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
     public JanelaAdicionarFuncionario() {
         initComponents();
 
-        for (Hotel hot : Gerenciador.getInstancia().getHoteis().values()) {
-            jComboBox1.addItem(hot.getNome());
-        }
 
     }
 
@@ -35,9 +32,7 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
      */
     public JanelaAdicionarFuncionario(Funcionario fun) {
         initComponents();
-        for (Hotel hot : Gerenciador.getInstancia().getHoteis().values()) {
-            jComboBox1.addItem(hot.getNome());
-        }
+
         funcionario = fun;
         jTextField1.setText(fun.getNome());
         jTextField2.setText(fun.getTelefone());
@@ -45,7 +40,6 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
         jTextField4.setText(fun.getEndereco());
         jTextField5.setText(fun.getCargo());
         jTextField6.setText(fun.getEstado() + "");
-        jComboBox1.setSelectedItem(fun.getHotel().getNome());
     }
 
     /**
@@ -64,12 +58,10 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel10 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
         jTextField1 = new javax.swing.JTextField();
         jTextField2 = new javax.swing.JTextField();
         jTextField3 = new javax.swing.JTextField();
@@ -92,8 +84,6 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
         jLabel6.setText("Cargo:");
 
         jLabel7.setText("Estado:*");
-
-        jLabel8.setText("Hotel:");
 
         jLabel9.setText("* Os estados se referem ao estado contratual do funcionario.");
 
@@ -121,39 +111,39 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(jButton1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jButton2))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel8)
-                            .addComponent(jLabel7)
-                            .addComponent(jLabel6)
-                            .addComponent(jLabel5)
-                            .addComponent(jLabel4)
-                            .addComponent(jLabel3)
-                            .addComponent(jLabel2))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jTextField1)
-                            .addComponent(jTextField4)
-                            .addComponent(jTextField5)
-                            .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
-                                    .addComponent(jTextField3))
-                                .addGap(0, 0, Short.MAX_VALUE))
-                            .addComponent(jTextField6)))
-                    .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(6, 6, 6)
                                 .addComponent(jLabel10))
                             .addComponent(jLabel9)
                             .addComponent(jLabel1))
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 52, Short.MAX_VALUE)))
-                .addContainerGap())
+                        .addContainerGap(52, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(jButton1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jButton2))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jLabel7)
+                                    .addComponent(jLabel6)
+                                    .addComponent(jLabel5)
+                                    .addComponent(jLabel4)
+                                    .addComponent(jLabel3)
+                                    .addComponent(jLabel2))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jTextField1)
+                                    .addComponent(jTextField4)
+                                    .addComponent(jTextField5)
+                                    .addGroup(layout.createSequentialGroup()
+                                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                            .addComponent(jTextField2, javax.swing.GroupLayout.DEFAULT_SIZE, 158, Short.MAX_VALUE)
+                                            .addComponent(jTextField3))
+                                        .addGap(0, 0, Short.MAX_VALUE))
+                                    .addComponent(jTextField6))))
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -184,11 +174,7 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel7)
                     .addComponent(jTextField6, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(18, 18, 18)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel8)
-                    .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 73, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel9)
                 .addGap(1, 1, 1)
                 .addComponent(jLabel10)
@@ -210,31 +196,12 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         if (funcionario != null) {
             try {
-                Hotel hotel = null;
-
-                int index = jComboBox1.getSelectedIndex() + 1;
-                String nome = jComboBox1.getSelectedItem().toString();
-
-                if (Gerenciador.getInstancia().getHoteis().containsKey(index)) {
-                    if (Gerenciador.getInstancia().getHoteis().get(index).getNome().equals(nome)) {
-                        hotel = Gerenciador.getInstancia().getHoteis().get(index);
-                    }
-                }
-                if (hotel == null) {
-                    for (Hotel hot : Gerenciador.getInstancia().getHoteis().values()) {
-                        if (hot.getNome().equals(nome)) {
-                            hotel = hot;
-                            break;
-                        }
-                    }
-                }
                 funcionario.setNome(jTextField1.getText());
                 funcionario.setTelefone(jTextField2.getText());
                 funcionario.setCpf(jTextField3.getText());
                 funcionario.setEndereco(jTextField4.getText());
                 funcionario.setCargo(jTextField5.getText());
                 funcionario.setEstado(jTextField6.getText().charAt(0));
-                funcionario.setHotel(hotel);
                 ConnectDB.getInstance().RequestChange(funcionario.updateQuery());
                 JanelaPrincipal.getInstancia().setupTabela();
                 JOptionPane.showMessageDialog(this, "Funcionario " + funcionario.getNome() + " alterado com sucesso!", "Funcionario alterado!", JOptionPane.INFORMATION_MESSAGE);
@@ -245,26 +212,8 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
             }
         } else {
             try {
-                Hotel hotel = null;
 
-                int index = jComboBox1.getSelectedIndex() + 1;
-                String nome = jComboBox1.getSelectedItem().toString();
-
-                if (Gerenciador.getInstancia().getHoteis().containsKey(index)) {
-                    if (Gerenciador.getInstancia().getHoteis().get(index).getNome().equals(nome)) {
-                        hotel = Gerenciador.getInstancia().getHoteis().get(index);
-                    }
-                }
-                if (hotel == null) {
-                    for (Hotel hot : Gerenciador.getInstancia().getHoteis().values()) {
-                        if (hot.getNome().equals(nome)) {
-                            hotel = hot;
-                            break;
-                        }
-                    }
-                }
-
-                Funcionario cli = Funcionario.criarFuncionario(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText().charAt(0), hotel);
+                Funcionario cli = Funcionario.criarFuncionario(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText(), jTextField5.getText(), jTextField6.getText().charAt(0));
                 ConnectDB.getInstance().RequestChange(cli.insertQuery());
                 Gerenciador.getInstancia().addFuncionario(cli);
                 JanelaPrincipal.getInstancia().setupTabela();
@@ -275,7 +224,6 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
                 jTextField4.setText("");
                 jTextField5.setText("");
                 jTextField6.setText("");
-                jComboBox1.setSelectedIndex(0);
             } catch (Exception e) {
                 e.printStackTrace();
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Problema ao criar Funcionario!", JOptionPane.ERROR_MESSAGE);
@@ -287,7 +235,6 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
@@ -296,7 +243,6 @@ public class JanelaAdicionarFuncionario extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JTextField jTextField1;
     private javax.swing.JTextField jTextField2;

@@ -53,7 +53,13 @@ public class Cliente {
 
     // TODO: pegar o prox codigo disponivel
     private static int getNewCodigo() {
-        return Gerenciador.getInstancia().getClientes().size() + 1;
+        int lastId = 0;
+        for (int res : Gerenciador.getInstancia().getClientes().keySet()){
+            if (lastId < res){
+                lastId = res;
+            }
+        }
+        return lastId + 1;
     }
 
     public int getCodigo() {

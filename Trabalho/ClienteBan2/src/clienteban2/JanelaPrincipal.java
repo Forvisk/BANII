@@ -416,7 +416,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 row.add(cliente.getTelefone());
                 row.add(cliente.getCargo());
                 row.add("" + cliente.getEstado());
-                row.add(cliente.getHotel().getNome());
+                row.add(cliente.getHotel() == null ? "Nenhum" : cliente.getHotel().getNome());
                 return row;
             }).forEachOrdered((row) -> {
                 modeloTabelaFuncionarios.addRow(row.toArray());
@@ -718,7 +718,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jSPAdicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setResizable(false);
 
         tTabela1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -883,7 +882,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                         .addComponent(jLabel9)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jButton2))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.DEFAULT_SIZE, 571, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -937,18 +936,18 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jScrollPane1)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(bReload1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 958, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(bCriar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(bAtualizar1)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(bDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap())
+                        .addComponent(bDeletar1, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane1)
+                    .addComponent(jPanel5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1024,10 +1023,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel2Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1467, Short.MAX_VALUE))
-                    .addGroup(jPanel2Layout.createSequentialGroup()
+                    .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 1343, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jCAdicionarCliente)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
@@ -1041,12 +1038,12 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jScrollPane4, javax.swing.GroupLayout.DEFAULT_SIZE, 675, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jCAtualizar)
                     .addComponent(jCDeletar)
                     .addComponent(jCAdicionarCliente))
-                .addContainerGap())
+                .addGap(12, 12, 12))
         );
 
         jTabbedPane1.addTab("Clientes", jPanel2);
@@ -1102,16 +1099,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1467, Short.MAX_VALUE)
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jScrollPane5, javax.swing.GroupLayout.DEFAULT_SIZE, 1343, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(jFAdicionar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFEditar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jFDeletar)))
                 .addContainerGap())
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jFAdicionar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jFDeletar))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1262,15 +1259,15 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jPanel4.setLayout(jPanel4Layout);
         jPanel4Layout.setHorizontalGroup(
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane6, javax.swing.GroupLayout.DEFAULT_SIZE, 1467, Short.MAX_VALUE)
+                    .addComponent(jScrollPane6)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addComponent(jPanel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, 1168, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jRAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jRAdicionar, javax.swing.GroupLayout.DEFAULT_SIZE, 163, Short.MAX_VALUE)
                             .addComponent(jRDeletar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -1282,9 +1279,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel4Layout.createSequentialGroup()
-                        .addGap(6, 6, 6)
+                        .addGap(9, 9, 9)
                         .addComponent(jRAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jRDeletar))
                     .addComponent(jPanel9, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap())
@@ -1328,7 +1325,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel6Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1467, Short.MAX_VALUE)
+                .addComponent(jScrollPane7, javax.swing.GroupLayout.DEFAULT_SIZE, 1337, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -1396,7 +1393,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel7Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1467, Short.MAX_VALUE)
+                .addComponent(jScrollPane8, javax.swing.GroupLayout.DEFAULT_SIZE, 1337, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -1463,7 +1460,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             .addGroup(jPanel8Layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 1467, Short.MAX_VALUE)
+                    .addComponent(jScrollPane9, javax.swing.GroupLayout.DEFAULT_SIZE, 1337, Short.MAX_VALUE)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jSPAdicionar)
@@ -1494,8 +1491,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jTabbedPane1)
-                .addContainerGap())
+                .addComponent(jTabbedPane1))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1506,82 +1502,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void bReload1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReload1ActionPerformed
-        // TODO add your handling code here:
-        try {
-            Gerenciador.getInstancia().clear();
-            setupTabela();
-        } catch (Exception e) {
-
-        }
-    }//GEN-LAST:event_bReload1ActionPerformed
-
-    private void bDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeletar1ActionPerformed
-        // TODO add your handling code here:
-        StringBuilder valores = new StringBuilder();
-        valores.append("DELETE FROM hotel WHERE hot_pk_codigo IN (");
-        boolean primeiro = true;
-        try {
-            for (int i : tTabela1.getSelectedRows()) {
-                Hotel h = Gerenciador.getInstancia().getHoteis().get(Integer.valueOf(tTabela1.getValueAt(i, 0).toString()));
-
-                if (primeiro) {
-                    primeiro = false;
-                } else {
-                    valores.append(", ");
-                }
-                valores.append(h.getCodigo());
-            }
-            valores.append(")");
-
-            System.out.println(valores.toString());
-            ClienteBan2.getInstance().conexao.RequestChange(valores.toString());
-            JOptionPane.showMessageDialog(this, "Valor(es) removido(s) com sucsso!", "Remoção executada", JOptionPane.INFORMATION_MESSAGE);
-            Gerenciador.getInstancia().clear();
-            this.setupTabela();
-        } catch (Exception e) {
-            e.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Problema ao remover valores!", "Remoção falhou", JOptionPane.ERROR_MESSAGE);
-        }
-    }//GEN-LAST:event_bDeletar1ActionPerformed
-
-    private void bAtualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizar1ActionPerformed
-        // TODO add your handling code here:
-        int row = tTabela1.getSelectedRow();
-        int codigo = Integer.valueOf(tTabela1.getValueAt(row, 0).toString());
-
-        Hotel hotel = Gerenciador
-                .getInstancia()
-                .getHoteis()
-                .get(codigo);
-
-        hotel.setCidade(hoteCidadeText.getText());
-        hotel.setCnpj(hotelCNPJText.getText());
-        hotel.setEndereco(hotelEnderecoText.getText());
-        hotel.setEstrelas(Integer.parseInt(hoteEstrelasBox.getSelectedItem().toString()));
-        hotel.setNome(hotelNomeText.getText());
-        hotel.setUF(hoteUFText.getText());
-
-        try {
-            String query = hotel.updateQuery();
-            ClienteBan2.getInstance().conexao.RequestChange(query);
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema ao atualizar dados", JOptionPane.ERROR_MESSAGE);
-            return;
-        }
-        JOptionPane.showMessageDialog(this, "Valor alterado com sucsso!", "Alteração executada", JOptionPane.INFORMATION_MESSAGE);
-        Gerenciador.getInstancia().clear();
-        this.setupTabela();
-        tTabela1.setRowSelectionInterval(row, row);
-    }//GEN-LAST:event_bAtualizar1ActionPerformed
-
-    private void bCriar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCriar1ActionPerformed
-        // TODO add your handling code here:
-        JanelaCriarHotel jc = new JanelaCriarHotel();
-        jc.setLocationRelativeTo(null);
-        jc.setVisible(true);
-    }//GEN-LAST:event_bCriar1ActionPerformed
 
     private void jCAdicionarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCAdicionarClienteActionPerformed
         // TODO add your handling code here:
@@ -1632,21 +1552,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Problema ao remover valores!", "Remoção falhou", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jCDeletarActionPerformed
-
-    private void jCriaQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCriaQuartoActionPerformed
-        // TODO add your handling code here:
-        int row = tTabela1.getSelectedRow();
-        int codigo = Integer.valueOf(tTabela1.getValueAt(row, 0).toString());
-
-        Hotel hotel = Gerenciador
-                .getInstancia()
-                .getHoteis()
-                .get(codigo);
-
-        JanelaAdicionarQuarto jc = new JanelaAdicionarQuarto(hotel);
-        jc.setLocationRelativeTo(this);
-        jc.setVisible(true);
-    }//GEN-LAST:event_jCriaQuartoActionPerformed
 
     private void jFAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jFAdicionarActionPerformed
         // TODO add your handling code here:
@@ -1790,6 +1695,97 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Problema ao remover valores!", "Remoção falhou", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_jSPDeletarActionPerformed
+
+    private void jCriaQuartoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jCriaQuartoActionPerformed
+        // TODO add your handling code here:
+        int row = tTabela1.getSelectedRow();
+        int codigo = Integer.valueOf(tTabela1.getValueAt(row, 0).toString());
+
+        Hotel hotel = Gerenciador
+        .getInstancia()
+        .getHoteis()
+        .get(codigo);
+
+        JanelaAdicionarQuarto jc = new JanelaAdicionarQuarto(hotel);
+        jc.setLocationRelativeTo(this);
+        jc.setVisible(true);
+    }//GEN-LAST:event_jCriaQuartoActionPerformed
+
+    private void bReload1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bReload1ActionPerformed
+        // TODO add your handling code here:
+        try {
+            Gerenciador.getInstancia().clear();
+            setupTabela();
+        } catch (Exception e) {
+
+        }
+    }//GEN-LAST:event_bReload1ActionPerformed
+
+    private void bDeletar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bDeletar1ActionPerformed
+        // TODO add your handling code here:
+        StringBuilder valores = new StringBuilder();
+        valores.append("DELETE FROM hotel WHERE hot_pk_codigo IN (");
+        boolean primeiro = true;
+        try {
+            for (int i : tTabela1.getSelectedRows()) {
+                Hotel h = Gerenciador.getInstancia().getHoteis().get(Integer.valueOf(tTabela1.getValueAt(i, 0).toString()));
+
+                if (primeiro) {
+                    primeiro = false;
+                } else {
+                    valores.append(", ");
+                }
+                valores.append(h.getCodigo());
+            }
+            valores.append(")");
+
+            System.out.println(valores.toString());
+            ClienteBan2.getInstance().conexao.RequestChange(valores.toString());
+            JOptionPane.showMessageDialog(this, "Valor(es) removido(s) com sucsso!", "Remoção executada", JOptionPane.INFORMATION_MESSAGE);
+            Gerenciador.getInstancia().clear();
+            this.setupTabela();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Problema ao remover valores!", "Remoção falhou", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_bDeletar1ActionPerformed
+
+    private void bAtualizar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bAtualizar1ActionPerformed
+        // TODO add your handling code here:
+        int row = tTabela1.getSelectedRow();
+        int codigo = Integer.valueOf(tTabela1.getValueAt(row, 0).toString());
+
+        Hotel hotel = Gerenciador
+        .getInstancia()
+        .getHoteis()
+        .get(codigo);
+
+        hotel.setCidade(hoteCidadeText.getText());
+        hotel.setCnpj(hotelCNPJText.getText());
+        hotel.setEndereco(hotelEnderecoText.getText());
+        hotel.setEstrelas(Integer.parseInt(hoteEstrelasBox.getSelectedItem().toString()));
+        hotel.setNome(hotelNomeText.getText());
+        hotel.setUF(hoteUFText.getText());
+
+        try {
+            String query = hotel.updateQuery();
+            ClienteBan2.getInstance().conexao.RequestChange(query);
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(this, ex.getMessage(), "Problema ao atualizar dados", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        JOptionPane.showMessageDialog(this, "Valor alterado com sucsso!", "Alteração executada", JOptionPane.INFORMATION_MESSAGE);
+        Gerenciador.getInstancia().clear();
+        this.setupTabela();
+        tTabela1.setRowSelectionInterval(row, row);
+    }//GEN-LAST:event_bAtualizar1ActionPerformed
+
+    private void bCriar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_bCriar1ActionPerformed
+        // TODO add your handling code here:
+        JanelaCriarHotel jc = new JanelaCriarHotel();
+        jc.setLocationRelativeTo(null);
+        jc.setVisible(true);
+    }//GEN-LAST:event_bCriar1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

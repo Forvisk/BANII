@@ -7,7 +7,6 @@ package clienteban2.tabelas;
 
 import clienteban2.Gerenciador;
 
-
 /**
  *
  * @author gustavo
@@ -34,7 +33,13 @@ public class Reserva {
     }
     
     public static int getNextId(){
-        return Gerenciador.getInstancia().getReservas().size() + 1;
+        int lastId = 0;
+        for (int res : Gerenciador.getInstancia().getReservas().keySet()){
+            if (lastId < res){
+                lastId = res;
+            }
+        }
+        return lastId + 1;
     }
     
     public Reserva(int codigo, Quarto quarto, Cliente cliente, String timestamp_criacao, String timestamp_pagamento, String checkIn, String checkOut, boolean camaExtra, char estado) {
@@ -122,6 +127,47 @@ public class Reserva {
     }
 
     public String toString(){
-        return "Reserva: de " + cliente + ", no quarto " + quarto + ", de " + checkIn.toString() + " ate " + checkOut.toString() + ". Criado as " + this.timestamp_criacao + " e pagamento as " + this.timestamp_pagamento;
+        return "Reserva: de " + cliente + ", no quarto " + quarto + ", de " + checkIn + " ate " + checkOut + ". Criado as " + this.timestamp_criacao + " e pagamento as " + this.timestamp_pagamento;
+    }
+    
+    public static void verificaDados(String timestamp_pagamento, String checkIn, String checkOut) throws Exception {
+        if (timestamp_pagamento.equals("  -  -    ")){
+            throw new Exception("Data de pagamento precisa ser preenchida!");
+        }
+        if (checkIn.equals("  -  -    ")){
+            throw new Exception("Data de Check In precisa ser preenchida!");
+        }
+        if (checkOut.equals("  -  -    ")){
+            throw new Exception("Data de Check Out precisa ser preenchida!");
+        }
+        
+    }
+
+    public String insertQuery() throws Exception {
+        verificaDados(timestamp_pagamento, checkIn, checkOut);
+        return "INSERT INTO reserva VALUES (" + this.codigo
+                + ", \'" + this.quarto.getNumero() + "\'"
+                + ", \'" + this.quarto.getHotel().getCodigo() + "\'"
+                + ", \'" + this.cliente.getCodigo() + "\'"
+                + ", \'" + this.timestamp_criacao + "\'"
+                + ", \'" + this.timestamp_pagamento + "\'"
+                + ", \'" + this.checkIn + "\'"
+                + ", \'" + this.checkOut + "\'"
+                + ", \'" + (this.camaExtra ? "S" : "N") + "\'"
+                + ", \'" + this.estado + "\');";
+    }
+
+    public String updateQuery() throws Exception {
+        verificaDados(timestamp_pagamento, checkIn, checkOut);
+        return "UPDATE reserva SET "
+                + "qua_fk_numero = \'" + this.quarto.getNumero() + "\'"
+                + ", hot_fk_codigo = \'" + this.quarto.getHotel().getCodigo() + "\'"
+                + ", cli_fk_codigo = \'" + this.cliente.getCodigo() + "\'"
+                + ", res_dt_dtcria = \'" + this.timestamp_criacao + "\'"
+                + ", res_dt_pagamento = \'" + this.timestamp_pagamento + "\'"
+                + ", res_dt_checkin = \'" + this.checkIn + "\'"
+                + ", res_dt_checkout = \'" + this.checkOut + "\'"
+                + ", res_st_camaextra = \'" + (this.camaExtra ? "S" : "N") + "\'"
+                + ", res_st_estado = \'" + this.estado + "\' WHERE res_pk_codigo = " + codigo + ";";
     }
 }

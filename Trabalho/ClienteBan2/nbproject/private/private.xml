@@ -3,16 +3,17 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/tabelas/Funcionario.java</file>
-            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaLogin.java</file>
+            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/tabelas/Quarto.java</file>
+            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaConectar.java</file>
+            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/Gerenciador.java</file>
+            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaAdicionarCliente.java</file>
             <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaPrincipal.java</file>
+            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/tabelas/TipoQuarto.java</file>
+            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/tabelas/Cliente.java</file>
+            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/tabelas/Hotel.java</file>
             <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaAdicionarFuncionario.java</file>
             <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaCriaReserva.java</file>
-            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/tabelas/Cliente.java</file>
-            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaAdicionarCliente.java</file>
-            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/Gerenciador.java</file>
             <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/tabelas/Reserva.java</file>
-            <file>file:/Users/gustavo/Documents/workspace/udesc/ban2/BANII/Trabalho/ClienteBan2/src/clienteban2/JanelaAdicionarQuarto.java</file>
         </group>
     </open-files>
 </project-private>

@@ -123,12 +123,12 @@ public class Funcionario {
         }
     }
 
-    public static Funcionario criarFuncionario(String nome, String telefone, String cpf, String endereco, String cargo, char estado, Hotel hotel) throws Exception {
+    public static Funcionario criarFuncionario(String nome, String telefone, String cpf, String endereco, String cargo, char estado) throws Exception {
         verificaDados(nome, telefone, cpf, endereco, estado, cargo);
 
         int cod = getNewCodigo();
 
-        return new Funcionario(cod, nome, telefone, cpf, endereco, cargo, estado, hotel);
+        return new Funcionario(cod, nome, telefone, cpf, endereco, cargo, estado, null);
     }
 
     // TODO: pegar o prox codigo disponivel
@@ -144,8 +144,7 @@ public class Funcionario {
                 + ", \'" + this.cpf + "\'"
                 + ", \'" + this.endereco + "\'"
                 + ", \'" + this.cargo + "\'"
-                + ", \'" + this.estado + "\'"
-                + ", " + this.hotel.getCodigo() + ");";
+                + ", \'" + this.estado + "\');";
     }
 
     public String updateQuery() throws Exception {
@@ -156,7 +155,6 @@ public class Funcionario {
                 + ", fun_st_cpf = \'" + this.cpf + "\'"
                 + ", fun_st_cargo = \'" + this.cargo + "\'"
                 + ", fun_st_estado = \'" + this.estado + "\'"
-                + ", hot_fk_hotel = \'" + this.hotel.getCodigo() + "\'"
                 + ", fun_st_endereco = \'" + this.endereco + "\' WHERE fun_pk_codigo = " + codigo + ";";
     }
 

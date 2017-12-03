@@ -16,6 +16,8 @@ import javax.swing.JOptionPane;
 public class JanelaAdicionarCliente extends javax.swing.JFrame {
 
     Cliente cli;
+    
+    JanelaCriaReserva jc = null;
 
     /**
      * Creates new form JanelaAdicionarCliente
@@ -26,6 +28,16 @@ public class JanelaAdicionarCliente extends javax.swing.JFrame {
 
     /**
      * Creates new form JanelaAdicionarCliente
+     * @param jc
+     */
+    public JanelaAdicionarCliente(JanelaCriaReserva jc) {
+        initComponents();
+        this.jc = jc;
+    }
+
+    /**
+     * Creates new form JanelaAdicionarCliente
+     * @param c
      */
     public JanelaAdicionarCliente(Cliente c) {
         initComponents();
@@ -35,7 +47,7 @@ public class JanelaAdicionarCliente extends javax.swing.JFrame {
         jTextField2.setText(cli.getTelefone());
         jTextField3.setText(cli.getCpf());
         jTextField4.setText(cli.getEndereco());
-        
+
         jButton2.setText("Modificar");
 
     }
@@ -157,6 +169,8 @@ public class JanelaAdicionarCliente extends javax.swing.JFrame {
                 Gerenciador.getInstancia().addCliente(cli);
                 JanelaPrincipal.getInstancia().setupTabela();
                 JOptionPane.showMessageDialog(this, "Cliente " + cli.getNome() + " alterado com sucesso!", "Cliente alterado!", JOptionPane.INFORMATION_MESSAGE);
+                
+                
                 this.dispose();
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Problema ao criar cliente!", JOptionPane.ERROR_MESSAGE);
@@ -172,6 +186,9 @@ public class JanelaAdicionarCliente extends javax.swing.JFrame {
                 jTextField2.setText("");
                 jTextField3.setText("");
                 jTextField4.setText("");
+                if (jc != null){
+                    jc.refreshClientes();
+                }
             } catch (Exception e) {
                 JOptionPane.showMessageDialog(this, e.getMessage(), "Problema ao criar cliente!", JOptionPane.ERROR_MESSAGE);
             }

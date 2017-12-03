@@ -82,6 +82,10 @@ public class Gerenciador {
         this.quartos.clear();
         this.clientes.clear();
         this.funcionarios.clear();
+        this.estadias.clear();
+        this.reservas.clear();
+        this.servicos.clear();
+        this.servicosPrestados.clear();
     }
 
     public void refresh() {
@@ -132,8 +136,8 @@ public class Gerenciador {
         } catch (Exception ex) {
             Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for (Estadia r : estadias.values()){
+
+        for (Estadia r : estadias.values()) {
             System.out.println(r);
         }
     }
@@ -147,7 +151,7 @@ public class Gerenciador {
 
                 int codigo = Integer.parseInt(entry.get("res_pk_codigo"));
 
-                String dataCria =entry.get("res_dt_dtcria");
+                String dataCria = entry.get("res_dt_dtcria");
                 String dataPgto = entry.get("res_dt_pagamento");
 
                 String checkIn = entry.get("res_dt_checkin");
@@ -178,8 +182,8 @@ public class Gerenciador {
         } catch (Exception ex) {
             Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-        for (Estadia r : estadias.values()){
+
+        for (Estadia r : estadias.values()) {
             System.out.println(r);
         }
     }
@@ -212,7 +216,7 @@ public class Gerenciador {
         } catch (Exception ex) {
             Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (Servico r : servicos.values()){
+        for (Servico r : servicos.values()) {
             System.out.println(r);
         }
     }
@@ -254,7 +258,7 @@ public class Gerenciador {
         } catch (Exception ex) {
             Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
-        for (ServicoPrestado r : servicosPrestados.values()){
+        for (ServicoPrestado r : servicosPrestados.values()) {
             System.out.println(r);
         }
     }
@@ -273,9 +277,12 @@ public class Gerenciador {
                 String cargo = entry.get("fun_st_cargo");
                 char estado = entry.get("fun_st_estado").charAt(0);
 
-                int codigoH = Integer.parseInt(entry.get("hot_fk_hotel"));
+                Hotel hotel = null;
 
-                Hotel hotel = hoteis.get(codigoH);
+                if (entry.containsKey("hot_fk_hotel")) {
+                    int codigoH = Integer.parseInt(entry.get("hot_fk_hotel"));
+                    hotel = hoteis.get(codigoH);
+                }
 
                 if (this.funcionarios.containsKey(codigo)) {
                     // Tem, entao vamos atualizar em vez de criar
@@ -541,6 +548,10 @@ public class Gerenciador {
 
     void addFuncionario(Funcionario funcionario) {
         funcionarios.put(funcionario.getCodigo(), funcionario);
+    }
+
+    void addReserva(Reserva reserva) {
+        reservas.put(reserva.getCodigo(), reserva);
     }
 
 }

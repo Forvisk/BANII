@@ -15,6 +15,7 @@ import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -81,7 +82,7 @@ public class JanelaCriaReserva extends javax.swing.JFrame {
 
                 int index = jComboBox4.getSelectedIndex() + 1;
 
-                Quarto quarto = hotel.getQuartos().get(index);
+                quarto = hotel.getQuartos().get(index);
             }
         });
 
@@ -128,7 +129,7 @@ public class JanelaCriaReserva extends javax.swing.JFrame {
         jComboBox4 = new javax.swing.JComboBox<>();
         jLabel8 = new javax.swing.JLabel();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel1.setText("Por favor, insira os dados par a reserva:");
 
@@ -150,11 +151,23 @@ public class JanelaCriaReserva extends javax.swing.JFrame {
 
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Esperando pagamento", "Cancelado pelo cliente", "Anulado pela empresa", "Serviço ativo" }));
 
-        jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("M-d-yyyy"))));
+        try {
+            jFormattedTextField1.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
-        jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.DateFormatter(new java.text.SimpleDateFormat("M-d-yyyy"))));
+        try {
+            jFormattedTextField2.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
-        jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.NumberFormatter(new java.text.DecimalFormat("M-d-yyyy"))));
+        try {
+            jFormattedTextField3.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("##-##-####")));
+        } catch (java.text.ParseException ex) {
+            ex.printStackTrace();
+        }
 
         jButton1.setText("Confirma");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -278,21 +291,39 @@ public class JanelaCriaReserva extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        JanelaAdicionarCliente jc = new JanelaAdicionarCliente();
+        JanelaAdicionarCliente jc = new JanelaAdicionarCliente(this);
         jc.setLocationRelativeTo(this);
         jc.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-        int idCliente = jComboBox2.getSelectedIndex() + 1;
-        Cliente cliente = Gerenciador.getInstancia().getClientes().get(idCliente);
+        try {
+            int idCliente = jComboBox2.getSelectedIndex() + 1;
+            Cliente cliente = Gerenciador.getInstancia().getClientes().get(idCliente);
 
-        SimpleDateFormat sdfDate = new SimpleDateFormat("MM-dd-yyyy");//dd/MM/yyyy
-        Date now = new Date();
-        String strDate = sdfDate.format(now);
+            SimpleDateFormat sdfDate = new SimpleDateFormat("MM-dd-yyyy");//dd/MM/yyyy
+            Date now = new Date();
+            String strDate = sdfDate.format(now);
 
-        Reserva reserva = Reserva.criarReserva(quarto, cliente, strDate, jFormattedTextField1.getText(), jFormattedTextField2.getText(), jFormattedTextField3.getText(), isChecked, jComboBox3.getSelectedItem().toString().charAt(0));
+            if (quarto == null) {
+                int index = jComboBox4.getSelectedIndex() + 1;
+
+                quarto = hotel.getQuartos().get(index);
+            }
+
+            Reserva reserva = Reserva.criarReserva(quarto, cliente, strDate, jFormattedTextField1.getText(), jFormattedTextField2.getText(), jFormattedTextField3.getText(), isChecked, jComboBox3.getSelectedItem().toString().charAt(0));
+
+            ConnectDB.getInstance().RequestChange(reserva.insertQuery());
+            Gerenciador.getInstancia().addReserva(reserva);
+            JanelaPrincipal.getInstancia().setupTabela();
+            JOptionPane.showMessageDialog(this, "Reserva feita!", "Reserva feita!", JOptionPane.INFORMATION_MESSAGE);
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, e.getMessage(), "Reserva falhou!", JOptionPane.ERROR_MESSAGE);
+
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
 
@@ -318,4 +349,12 @@ public class JanelaCriaReserva extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     // End of variables declaration//GEN-END:variables
+
+    void refreshClientes() {
+        jComboBox3.removeAllItems();
+        for (Cliente cliente : Gerenciador.getInstancia().getClientes().values()) {
+            jComboBox3.addItem(cliente.getNome());
+            System.out.println(cliente);
+        }
+    }
 }

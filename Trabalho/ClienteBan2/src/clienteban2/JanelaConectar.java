@@ -5,6 +5,8 @@
  */
 package clienteban2;
 
+import java.awt.event.KeyEvent;
+
 
 /**
  *
@@ -21,6 +23,7 @@ public class JanelaConectar extends javax.swing.JFrame {
     public JanelaConectar(JanelaLogin login) {
         initComponents();
         this.login = login;
+        jButton1.setMnemonic(KeyEvent.VK_ENTER);
     }
 
     public void makeConnection(String ip, String dbname, String user, String pw) {
