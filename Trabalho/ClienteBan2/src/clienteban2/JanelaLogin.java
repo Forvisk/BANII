@@ -1,6 +1,7 @@
 package clienteban2;
 
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /*
@@ -19,6 +20,8 @@ public class JanelaLogin extends javax.swing.JFrame {
      */
     public JanelaLogin() {
         initComponents();
+        
+        bLogin.setMnemonic(KeyEvent.VK_ENTER);
     }
 
     public void connected(boolean foi) {

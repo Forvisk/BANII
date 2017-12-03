@@ -110,4 +110,13 @@ public class Cliente {
                 + ", \'" + this.endereco + "\');";
     }
 
+    public String updateQuery() throws Exception {
+        verificaDados(nome, telefone, cpf, endereco);
+        return "UPDATE cliente SET "
+                + "cli_st_nome = \'" + this.nome + "\'"
+                + ", cli_st_telefone = \'" + this.telefone + "\'"
+                + ", cli_st_cpf = \'" + this.cpf + "\'"
+                + ", cli_st_endereco = \'" + this.endereco + "\' WHERE cli_pk_codigo = " + codigo + ";";
+    }
+
 }

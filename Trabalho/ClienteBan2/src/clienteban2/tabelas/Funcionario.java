@@ -5,6 +5,8 @@
  */
 package clienteban2.tabelas;
 
+import clienteban2.Gerenciador;
+
 /**
  *
  * @author gustavo
@@ -31,8 +33,6 @@ public class Funcionario {
         this.hotel = hotel;
     }
 
-    
-    
     public int getCodigo() {
         return codigo;
     }
@@ -96,10 +96,68 @@ public class Funcionario {
     public void setHotel(Hotel hotel) {
         this.hotel = hotel;
     }
-    
+
     @Override
-    public String toString(){
+    public String toString() {
         return nome + ": {codigo: " + codigo + ", endereco: " + endereco + ", cargo: " + cargo + ", hotel: " + (hotel == null ? "Nao definido" : hotel) + ", estado: " + estado + " }";
+    }
+
+    public static void verificaDados(String nome, String telefone, String cpf, String endereco, char estado, String cargo) throws Exception {
+        if (nome.length() < 3) {
+            throw new Exception("Verifique o nome.");
+        }
+        if (cpf.length() != 11) {
+            throw new Exception("Verifique o CPF. Apenas os 11 digitos.");
+        }
+        if (endereco.length() < 3) {
+            throw new Exception("Verifique o endereço.");
+        }
+        if (cargo.length() < 3) {
+            throw new Exception("Verifique o cargo.");
+        }
+        if (telefone.length() != 12) {
+            throw new Exception("Telefone deve ter 12 digitos!");
+        }
+        if (estado != 'A' && estado != 'L' && estado != 'D'){
+            throw new Exception("O estado deve ser A, L ou D (em maiúsculo)");
+        }
+    }
+
+    public static Funcionario criarFuncionario(String nome, String telefone, String cpf, String endereco, String cargo, char estado, Hotel hotel) throws Exception {
+        verificaDados(nome, telefone, cpf, endereco, estado, cargo);
+
+        int cod = getNewCodigo();
+
+        return new Funcionario(cod, nome, telefone, cpf, endereco, cargo, estado, hotel);
+    }
+
+    // TODO: pegar o prox codigo disponivel
+    private static int getNewCodigo() {
+        return Gerenciador.getInstancia().getFuncionarios().size() + 1;
+    }
+
+    public String insertQuery() throws Exception {
+        verificaDados(nome, telefone, cpf, endereco, estado, cargo);
+        return "INSERT INTO funcionario VALUES (" + this.codigo
+                + ", \'" + this.nome + "\'"
+                + ", \'" + this.telefone + "\'"
+                + ", \'" + this.cpf + "\'"
+                + ", \'" + this.endereco + "\'"
+                + ", \'" + this.cargo + "\'"
+                + ", \'" + this.estado + "\'"
+                + ", " + this.hotel.getCodigo() + ");";
+    }
+
+    public String updateQuery() throws Exception {
+        verificaDados(nome, telefone, cpf, endereco, estado, cargo);
+        return "UPDATE funcionario SET "
+                + "fun_st_nome = \'" + this.nome + "\'"
+                + ", fun_st_telefone = \'" + this.telefone + "\'"
+                + ", fun_st_cpf = \'" + this.cpf + "\'"
+                + ", fun_st_cargo = \'" + this.cargo + "\'"
+                + ", fun_st_estado = \'" + this.estado + "\'"
+                + ", hot_fk_hotel = \'" + this.hotel.getCodigo() + "\'"
+                + ", fun_st_endereco = \'" + this.endereco + "\' WHERE fun_pk_codigo = " + codigo + ";";
     }
 
 }

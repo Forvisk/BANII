@@ -539,4 +539,8 @@ public class Gerenciador {
         return servicosPrestados;
     }
 
+    void addFuncionario(Funcionario funcionario) {
+        funcionarios.put(funcionario.getCodigo(), funcionario);
+    }
+
 }

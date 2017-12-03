@@ -15,11 +15,29 @@ import javax.swing.JOptionPane;
  */
 public class JanelaAdicionarCliente extends javax.swing.JFrame {
 
+    Cliente cli;
+
     /**
      * Creates new form JanelaAdicionarCliente
      */
     public JanelaAdicionarCliente() {
         initComponents();
+    }
+
+    /**
+     * Creates new form JanelaAdicionarCliente
+     */
+    public JanelaAdicionarCliente(Cliente c) {
+        initComponents();
+        cli = c;
+
+        jTextField1.setText(cli.getNome());
+        jTextField2.setText(cli.getTelefone());
+        jTextField3.setText(cli.getCpf());
+        jTextField4.setText(cli.getEndereco());
+        
+        jButton2.setText("Modificar");
+
     }
 
     /**
@@ -129,18 +147,34 @@ public class JanelaAdicionarCliente extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        try {
-            Cliente cli = Cliente.criarCliente(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText());
-            ConnectDB.getInstance().RequestChange(cli.insertQuery());
-            Gerenciador.getInstancia().addCliente(cli);
-            JanelaPrincipal.getInstancia().setupTabela();
-            JOptionPane.showMessageDialog(this, "Cliente " + cli.getNome() + " criado com sucesso!", "Cliente criado!", JOptionPane.INFORMATION_MESSAGE);
-            jTextField1.setText("");
-            jTextField2.setText("");
-            jTextField3.setText("");
-            jTextField4.setText("");
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e.getMessage(), "Problema ao criar cliente!", JOptionPane.ERROR_MESSAGE);
+        if (cli != null) {
+            try {
+                cli.setNome(jTextField1.getText());
+                cli.setTelefone(jTextField2.getText());
+                cli.setCpf(jTextField3.getText());
+                cli.setEndereco(jTextField4.getText());
+                ConnectDB.getInstance().RequestChange(cli.updateQuery());
+                Gerenciador.getInstancia().addCliente(cli);
+                JanelaPrincipal.getInstancia().setupTabela();
+                JOptionPane.showMessageDialog(this, "Cliente " + cli.getNome() + " alterado com sucesso!", "Cliente alterado!", JOptionPane.INFORMATION_MESSAGE);
+                this.dispose();
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Problema ao criar cliente!", JOptionPane.ERROR_MESSAGE);
+            }
+        } else {
+            try {
+                Cliente cli = Cliente.criarCliente(jTextField1.getText(), jTextField2.getText(), jTextField3.getText(), jTextField4.getText());
+                ConnectDB.getInstance().RequestChange(cli.insertQuery());
+                Gerenciador.getInstancia().addCliente(cli);
+                JanelaPrincipal.getInstancia().setupTabela();
+                JOptionPane.showMessageDialog(this, "Cliente " + cli.getNome() + " criado com sucesso!", "Cliente criado!", JOptionPane.INFORMATION_MESSAGE);
+                jTextField1.setText("");
+                jTextField2.setText("");
+                jTextField3.setText("");
+                jTextField4.setText("");
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(this, e.getMessage(), "Problema ao criar cliente!", JOptionPane.ERROR_MESSAGE);
+            }
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

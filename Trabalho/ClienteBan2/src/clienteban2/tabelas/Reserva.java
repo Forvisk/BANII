@@ -5,12 +5,15 @@
  */
 package clienteban2.tabelas;
 
+import clienteban2.Gerenciador;
+
 
 /**
  *
  * @author gustavo
  */
 public class Reserva {
+
 
     private int codigo;
 
@@ -26,6 +29,14 @@ public class Reserva {
     private boolean camaExtra;
     private char estado; // E - esperando pagamento; S - pagamento aceito; C - cancelado pelo cliente; A - anulado pela agencia (sem pagamento apos 48 horas);
 
+    public static Reserva criarReserva(Quarto quarto, Cliente cliente, String timestamp_criacao, String timestamp_pagamento, String checkIn, String checkOut, boolean camaExtra, char estado) {
+        return new Reserva(getNextId(), quarto, cliente, timestamp_criacao, timestamp_pagamento, checkIn, checkOut, camaExtra, estado);
+    }
+    
+    public static int getNextId(){
+        return Gerenciador.getInstancia().getReservas().size() + 1;
+    }
+    
     public Reserva(int codigo, Quarto quarto, Cliente cliente, String timestamp_criacao, String timestamp_pagamento, String checkIn, String checkOut, boolean camaExtra, char estado) {
         this.codigo = codigo;
         this.quarto = quarto;
