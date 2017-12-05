@@ -69,8 +69,6 @@ public class JanelaCriaReserva extends javax.swing.JFrame {
                     }
                 }
                 for (Quarto hot : hotel.getQuartos().values()) {
-                    System.out.println(hot);
-                    jComboBox4.removeAllItems();
                     jComboBox4.addItem(hot.getLocal() + "");
                 }
             }

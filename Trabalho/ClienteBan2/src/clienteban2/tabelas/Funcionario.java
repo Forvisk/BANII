@@ -118,7 +118,7 @@ public class Funcionario {
         if (telefone.length() != 12) {
             throw new Exception("Telefone deve ter 12 digitos!");
         }
-        if (estado != 'A' && estado != 'L' && estado != 'D'){
+        if (estado != 'A' && estado != 'L' && estado != 'D') {
             throw new Exception("O estado deve ser A, L ou D (em maiúsculo)");
         }
     }
@@ -132,8 +132,14 @@ public class Funcionario {
     }
 
     // TODO: pegar o prox codigo disponivel
-    private static int getNewCodigo() {
-        return Gerenciador.getInstancia().getFuncionarios().size() + 1;
+    public static int getNewCodigo() {
+        int lastId = 0;
+        for (int res : Gerenciador.getInstancia().getFuncionarios().keySet()) {
+            if (lastId < res) {
+                lastId = res;
+            }
+        }
+        return lastId + 1;
     }
 
     public String insertQuery() throws Exception {

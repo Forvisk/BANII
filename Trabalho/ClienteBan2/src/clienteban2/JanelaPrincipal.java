@@ -124,16 +124,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     int codigo = Integer.valueOf(tSPrestados.getValueAt(tSPrestados.getSelectedRow(), 0).toString());
                     Estadia estadia = Gerenciador.getInstancia().getEstadias().get(codigo);
 
-//                    JRCamaExtra.setText(reserva.isCamaExtra() ? "Sim" : "Não");
-//                    JREstado.setText(reserva.getEstado() + "");
-//                    JRQuarto.setText(reserva.getQuarto().getLocal() + " N. " + reserva.getQuarto().getNumero());
-//                    jRCheckIn.setText(reserva.getCheckIn());
-//                    jRCheckOut.setText(reserva.getCheckOut());
-//                    jRCliente.setText(reserva.getCliente().getNome());
-//                    jRHotel.setText(reserva.getQuarto().getHotel().getNome());
-                    jSPEditar.setEnabled(true);
-                    jSPEditar.setToolTipText("Clique para salvar os dados!");
-
                     jSPDeletar.setEnabled(true);
                     jSPDeletar.setToolTipText("Clique para deletar!");
 
@@ -141,28 +131,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     jSPDeletar.setEnabled(true);
                     jSPDeletar.setToolTipText("Clique para deletar essas " + selectedRowNum + " linhas!");
 
-                    jSPEditar.setEnabled(false);
-                    jSPEditar.setToolTipText("Não é possivel salvar mais de um por vez!");
-//                    JRCamaExtra.setText("");
-//                    JREstado.setText("");
-//                    JRQuarto.setText("");
-//                    jRCheckIn.setText("");
-//                    jRCheckOut.setText("");
-//                    jRCliente.setText("");
-//                    jRHotel.setText("");
-
-                    // 0 selected
                 } else {
-//                    JRCamaExtra.setText("");
-//                    JREstado.setText("");
-//                    JRQuarto.setText("");
-//                    jRCheckIn.setText("");
-//                    jRCheckOut.setText("");
-//                    jRCliente.setText("");
-//                    jRHotel.setText("");
-
-                    jSPEditar.setEnabled(false);
-                    jSPEditar.setToolTipText("Selecione uma linha!");
 
                     jSPDeletar.setEnabled(false);
                     jSPDeletar.setToolTipText("Selecione uma linha!");
@@ -202,16 +171,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     int codigo = Integer.valueOf(tServicos.getValueAt(tServicos.getSelectedRow(), 0).toString());
                     Estadia estadia = Gerenciador.getInstancia().getEstadias().get(codigo);
 
-//                    JRCamaExtra.setText(reserva.isCamaExtra() ? "Sim" : "Não");
-//                    JREstado.setText(reserva.getEstado() + "");
-//                    JRQuarto.setText(reserva.getQuarto().getLocal() + " N. " + reserva.getQuarto().getNumero());
-//                    jRCheckIn.setText(reserva.getCheckIn());
-//                    jRCheckOut.setText(reserva.getCheckOut());
-//                    jRCliente.setText(reserva.getCliente().getNome());
-//                    jRHotel.setText(reserva.getQuarto().getHotel().getNome());
-                    jSEditar.setEnabled(true);
-                    jSEditar.setToolTipText("Clique para salvar os dados!");
-
                     jSDeletar.setEnabled(true);
                     jSDeletar.setToolTipText("Clique para deletar!");
 
@@ -219,28 +178,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     jSDeletar.setEnabled(true);
                     jSDeletar.setToolTipText("Clique para deletar essas " + selectedRowNum + " linhas!");
 
-                    jSEditar.setEnabled(false);
-                    jSEditar.setToolTipText("Não é possivel salvar mais de um por vez!");
-//                    JRCamaExtra.setText("");
-//                    JREstado.setText("");
-//                    JRQuarto.setText("");
-//                    jRCheckIn.setText("");
-//                    jRCheckOut.setText("");
-//                    jRCliente.setText("");
-//                    jRHotel.setText("");
-
-                    // 0 selected
                 } else {
-//                    JRCamaExtra.setText("");
-//                    JREstado.setText("");
-//                    JRQuarto.setText("");
-//                    jRCheckIn.setText("");
-//                    jRCheckOut.setText("");
-//                    jRCliente.setText("");
-//                    jRHotel.setText("");
-
-                    jSEditar.setEnabled(false);
-                    jSEditar.setToolTipText("Selecione uma linha!");
 
                     jSDeletar.setEnabled(false);
                     jSDeletar.setToolTipText("Selecione uma linha!");
@@ -282,16 +220,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     int codigo = Integer.valueOf(tEstadia.getValueAt(tEstadia.getSelectedRow(), 0).toString());
                     Estadia estadia = Gerenciador.getInstancia().getEstadias().get(codigo);
 
-//                    JRCamaExtra.setText(reserva.isCamaExtra() ? "Sim" : "Não");
-//                    JREstado.setText(reserva.getEstado() + "");
-//                    JRQuarto.setText(reserva.getQuarto().getLocal() + " N. " + reserva.getQuarto().getNumero());
-//                    jRCheckIn.setText(reserva.getCheckIn());
-//                    jRCheckOut.setText(reserva.getCheckOut());
-//                    jRCliente.setText(reserva.getCliente().getNome());
-//                    jRHotel.setText(reserva.getQuarto().getHotel().getNome());
-                    jEEditar.setEnabled(true);
-                    jEEditar.setToolTipText("Clique para salvar os dados!");
-
                     jEDeletar.setEnabled(true);
                     jEDeletar.setToolTipText("Clique para deletar!");
 
@@ -299,28 +227,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     jEDeletar.setEnabled(true);
                     jEDeletar.setToolTipText("Clique para deletar essas " + selectedRowNum + " linhas!");
 
-                    jEEditar.setEnabled(false);
-                    jEEditar.setToolTipText("Não é possivel salvar mais de um por vez!");
-//                    JRCamaExtra.setText("");
-//                    JREstado.setText("");
-//                    JRQuarto.setText("");
-//                    jRCheckIn.setText("");
-//                    jRCheckOut.setText("");
-//                    jRCliente.setText("");
-//                    jRHotel.setText("");
-
-                    // 0 selected
                 } else {
-//                    JRCamaExtra.setText("");
-//                    JREstado.setText("");
-//                    JRQuarto.setText("");
-//                    jRCheckIn.setText("");
-//                    jRCheckOut.setText("");
-//                    jRCliente.setText("");
-//                    jRHotel.setText("");
-
-                    jEEditar.setEnabled(false);
-                    jEEditar.setToolTipText("Selecione uma linha!");
 
                     jEDeletar.setEnabled(false);
                     jEDeletar.setToolTipText("Selecione uma linha!");
@@ -575,6 +482,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     }
 
                     for (Funcionario fun : hotel.getFuncionarios().values()) {
+                        System.out.println(fun);
                         ArrayList<String> row = new ArrayList<>();
                         row.add(String.valueOf(fun.getCodigo()));
                         row.add(fun.getNome());
@@ -702,19 +610,16 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jScrollPane7 = new javax.swing.JScrollPane();
         tEstadia = new javax.swing.JTable();
         jEDeletar = new javax.swing.JButton();
-        jEEditar = new javax.swing.JButton();
         jEAdicionar = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tServicos = new javax.swing.JTable();
         jSDeletar = new javax.swing.JButton();
-        jSEditar = new javax.swing.JButton();
         jSAdicionar = new javax.swing.JButton();
         jPanel8 = new javax.swing.JPanel();
         jScrollPane9 = new javax.swing.JScrollPane();
         tSPrestados = new javax.swing.JTable();
         jSPDeletar = new javax.swing.JButton();
-        jSPEditar = new javax.swing.JButton();
         jSPAdicionar = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -838,6 +743,11 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         jButton2.setText("Adicionar Funcionário");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
         jPanel5.setLayout(jPanel5Layout);
@@ -1004,6 +914,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
 
         jCDeletar.setText("Deletar");
+        jCDeletar.setEnabled(false);
         jCDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCDeletarActionPerformed(evt);
@@ -1011,6 +922,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
 
         jCAtualizar.setText("Editar");
+        jCAtualizar.setEnabled(false);
         jCAtualizar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jCAtualizarActionPerformed(evt);
@@ -1074,6 +986,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         jFDeletar.setText("Deletar");
+        jFDeletar.setEnabled(false);
         jFDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFDeletarActionPerformed(evt);
@@ -1081,6 +994,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         });
 
         jFEditar.setText("Editar");
+        jFEditar.setEnabled(false);
         jFEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jFEditarActionPerformed(evt);
@@ -1151,6 +1065,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         jRDeletar.setText("Deletar");
+        jRDeletar.setEnabled(false);
         jRDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jRDeletarActionPerformed(evt);
@@ -1314,10 +1229,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         jEDeletar.setText("Deletar");
-
-        jEEditar.setText("Editar");
+        jEDeletar.setEnabled(false);
+        jEDeletar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEDeletarActionPerformed(evt);
+            }
+        });
 
         jEAdicionar.setText("Adicionar");
+        jEAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jEAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -1331,8 +1255,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jEAdicionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jEEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEDeletar))
         );
         jPanel6Layout.setVerticalGroup(
@@ -1343,7 +1265,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jEDeletar)
-                    .addComponent(jEEditar)
                     .addComponent(jEAdicionar))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
@@ -1377,15 +1298,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         jSDeletar.setText("Deletar");
+        jSDeletar.setEnabled(false);
         jSDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSDeletarActionPerformed(evt);
             }
         });
 
-        jSEditar.setText("Editar");
-
         jSAdicionar.setText("Adicionar");
+        jSAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -1399,8 +1324,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jSAdicionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jSEditar)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSDeletar))
         );
         jPanel7Layout.setVerticalGroup(
@@ -1411,7 +1334,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSDeletar)
-                    .addComponent(jSEditar)
                     .addComponent(jSAdicionar))
                 .addContainerGap(21, Short.MAX_VALUE))
         );
@@ -1443,15 +1365,19 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         }
 
         jSPDeletar.setText("Deletar");
+        jSPDeletar.setEnabled(false);
         jSPDeletar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jSPDeletarActionPerformed(evt);
             }
         });
 
-        jSPEditar.setText("Editar");
-
         jSPAdicionar.setText("Adicionar");
+        jSPAdicionar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jSPAdicionarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -1464,9 +1390,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(jSPAdicionar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jSPEditar)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jSPDeletar)))
                 .addContainerGap())
         );
@@ -1478,7 +1402,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jSPDeletar)
-                    .addComponent(jSPEditar)
                     .addComponent(jSPAdicionar))
                 .addContainerGap(29, Short.MAX_VALUE))
         );
@@ -1569,7 +1492,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .getInstancia()
                 .getFuncionarios()
                 .get(codigo);
-        
+
         JanelaAdicionarFuncionario jf = new JanelaAdicionarFuncionario(fun);
         jf.setLocationRelativeTo(this);
         jf.setVisible(true);
@@ -1641,6 +1564,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     }//GEN-LAST:event_jFDeletarActionPerformed
 
     private void jSDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSDeletarActionPerformed
+        if (tServicos.getSelectedRowCount() == 0) {
+            return;
+        }
         StringBuilder valores = new StringBuilder();
         valores.append("DELETE FROM servico WHERE sev_pk_codigo IN (");
         boolean primeiro = true;
@@ -1702,9 +1628,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         int codigo = Integer.valueOf(tTabela1.getValueAt(row, 0).toString());
 
         Hotel hotel = Gerenciador
-        .getInstancia()
-        .getHoteis()
-        .get(codigo);
+                .getInstancia()
+                .getHoteis()
+                .get(codigo);
 
         JanelaAdicionarQuarto jc = new JanelaAdicionarQuarto(hotel);
         jc.setLocationRelativeTo(this);
@@ -1756,9 +1682,9 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         int codigo = Integer.valueOf(tTabela1.getValueAt(row, 0).toString());
 
         Hotel hotel = Gerenciador
-        .getInstancia()
-        .getHoteis()
-        .get(codigo);
+                .getInstancia()
+                .getHoteis()
+                .get(codigo);
 
         hotel.setCidade(hoteCidadeText.getText());
         hotel.setCnpj(hotelCNPJText.getText());
@@ -1787,6 +1713,73 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         jc.setVisible(true);
     }//GEN-LAST:event_bCriar1ActionPerformed
 
+    private void jEAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEAdicionarActionPerformed
+        // TODO add your handling code here:
+        JanelaAdicionaEstadia je = new JanelaAdicionaEstadia();
+        je.setLocationRelativeTo(this);
+        je.setVisible(true);
+    }//GEN-LAST:event_jEAdicionarActionPerformed
+
+    private void jEDeletarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jEDeletarActionPerformed
+        StringBuilder valores = new StringBuilder();
+        valores.append("DELETE FROM estadia WHERE est_pk_codigo IN (");
+        boolean primeiro = true;
+        try {
+            for (int i : tEstadia.getSelectedRows()) {
+                Estadia h = Gerenciador.getInstancia().getEstadias().get(Integer.valueOf(tEstadia.getValueAt(i, 0).toString()));
+
+                if (primeiro) {
+                    primeiro = false;
+                } else {
+                    valores.append(", ");
+                }
+                valores.append(h.getCodigo());
+            }
+            valores.append(")");
+
+            System.out.println(valores.toString());
+            ClienteBan2.getInstance().conexao.RequestChange(valores.toString());
+            JOptionPane.showMessageDialog(this, "Valor(es) removido(s) com sucsso!", "Remoção executada", JOptionPane.INFORMATION_MESSAGE);
+            Gerenciador.getInstancia().clear();
+            this.setupTabela();
+        } catch (Exception e) {
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(this, "Problema ao remover valores!", "Remoção falhou", JOptionPane.ERROR_MESSAGE);
+        }
+    }//GEN-LAST:event_jEDeletarActionPerformed
+
+    private void jSAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSAdicionarActionPerformed
+        JanelaCriaServico js = new JanelaCriaServico();
+        js.setLocationRelativeTo(this);
+        js.setVisible(true);
+    }//GEN-LAST:event_jSAdicionarActionPerformed
+
+    private void jSPAdicionarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jSPAdicionarActionPerformed
+        // TODO add your handling code here:
+        JanelaCriaServicoPrestado jsp = new JanelaCriaServicoPrestado();
+        jsp.setLocationRelativeTo(this);
+        jsp.setVisible(true);
+    }//GEN-LAST:event_jSPAdicionarActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if (tTabela1.getSelectedRowCount() == 0){
+            JOptionPane.showMessageDialog(this, "Por favor, escolha um hotel!", "Falha ao adicionar funcionario", JOptionPane.ERROR_MESSAGE);
+            return;
+        }
+        int row = tTabela1.getSelectedRow();
+        int codigo = Integer.valueOf(tTabela1.getValueAt(row, 0).toString());
+
+        Hotel hotel = Gerenciador
+                .getInstancia()
+                .getHoteis()
+                .get(codigo);
+        
+        JanelaInserirFuncionarioHotel jsp = new JanelaInserirFuncionarioHotel(hotel);
+        jsp.setLocationRelativeTo(this);
+        jsp.setVisible(true);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel JRCamaExtra;
@@ -1810,7 +1803,6 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jCriaQuarto;
     private javax.swing.JButton jEAdicionar;
     private javax.swing.JButton jEDeletar;
-    private javax.swing.JButton jEEditar;
     private javax.swing.JButton jFAdicionar;
     private javax.swing.JButton jFDeletar;
     private javax.swing.JButton jFEditar;
@@ -1847,10 +1839,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JLabel jRHotel;
     private javax.swing.JButton jSAdicionar;
     private javax.swing.JButton jSDeletar;
-    private javax.swing.JButton jSEditar;
     private javax.swing.JButton jSPAdicionar;
     private javax.swing.JButton jSPDeletar;
-    private javax.swing.JButton jSPEditar;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;

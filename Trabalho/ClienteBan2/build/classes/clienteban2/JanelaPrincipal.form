@@ -460,6 +460,9 @@
                   <Properties>
                     <Property name="text" type="java.lang.String" value="Adicionar Funcion&#xe1;rio"/>
                   </Properties>
+                  <Events>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton2ActionPerformed"/>
+                  </Events>
                 </Component>
               </SubComponents>
             </Container>
@@ -575,6 +578,7 @@
             <Component class="javax.swing.JButton" name="jCDeletar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deletar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCDeletarActionPerformed"/>
@@ -583,6 +587,7 @@
             <Component class="javax.swing.JButton" name="jCAtualizar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jCAtualizarActionPerformed"/>
@@ -698,6 +703,7 @@
             <Component class="javax.swing.JButton" name="jFDeletar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deletar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFDeletarActionPerformed"/>
@@ -706,6 +712,7 @@
             <Component class="javax.swing.JButton" name="jFEditar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Editar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jFEditarActionPerformed"/>
@@ -852,6 +859,7 @@
             <Component class="javax.swing.JButton" name="jRDeletar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deletar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jRDeletarActionPerformed"/>
@@ -1047,8 +1055,6 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jEAdicionar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jEEditar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jEDeletar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1061,7 +1067,6 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jEDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jEEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jEAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="28" max="32767" attributes="0"/>
@@ -1133,17 +1138,19 @@
             <Component class="javax.swing.JButton" name="jEDeletar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deletar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
-            </Component>
-            <Component class="javax.swing.JButton" name="jEEditar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar"/>
-              </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jEDeletarActionPerformed"/>
+              </Events>
             </Component>
             <Component class="javax.swing.JButton" name="jEAdicionar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jEAdicionarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1168,8 +1175,6 @@
                       <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                       <Component id="jSAdicionar" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jSEditar" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace max="-2" attributes="0"/>
                       <Component id="jSDeletar" min="-2" max="-2" attributes="0"/>
                   </Group>
               </Group>
@@ -1182,7 +1187,6 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jSDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jSAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="21" max="32767" attributes="0"/>
@@ -1242,20 +1246,19 @@
             <Component class="javax.swing.JButton" name="jSDeletar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deletar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSDeletarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jSEditar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="jSAdicionar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSAdicionarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>
@@ -1278,9 +1281,7 @@
                           <Group type="102" alignment="1" attributes="0">
                               <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
                               <Component id="jSPAdicionar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
-                              <Component id="jSPEditar" min="-2" max="-2" attributes="0"/>
-                              <EmptySpace max="-2" attributes="0"/>
+                              <EmptySpace type="unrelated" max="-2" attributes="0"/>
                               <Component id="jSPDeletar" min="-2" max="-2" attributes="0"/>
                           </Group>
                       </Group>
@@ -1296,7 +1297,6 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jSPDeletar" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jSPEditar" alignment="3" min="-2" max="-2" attributes="0"/>
                           <Component id="jSPAdicionar" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace pref="29" max="32767" attributes="0"/>
@@ -1374,20 +1374,19 @@
             <Component class="javax.swing.JButton" name="jSPDeletar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Deletar"/>
+                <Property name="enabled" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSPDeletarActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="jSPEditar">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Editar"/>
-              </Properties>
-            </Component>
             <Component class="javax.swing.JButton" name="jSPAdicionar">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Adicionar"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jSPAdicionarActionPerformed"/>
+              </Events>
             </Component>
           </SubComponents>
         </Container>

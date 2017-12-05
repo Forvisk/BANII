@@ -27,7 +27,7 @@ public class Hotel {
     public static Hotel criarHotel(String nome, String cnpj, String cidade, String UF, String endereco, int estrelas) throws Exception {
         verificaDados(nome, cnpj, cidade, UF, endereco, estrelas);
 
-        int cod = getNewCodigo();
+        int cod = getNextId();
 
         return new Hotel(cod, nome, cnpj, cidade, UF, endereco, estrelas);
     }
@@ -134,8 +134,14 @@ public class Hotel {
     }
 
     // TODO: pegar o prox codigo disponivel
-    private static int getNewCodigo() {
-        return Gerenciador.getInstancia().getHoteis().size() + 1;
+    public static int getNextId(){
+        int lastId = 0;
+        for (int res : Gerenciador.getInstancia().getHoteis().keySet()){
+            if (lastId < res){
+                lastId = res;
+            }
+        }
+        return lastId + 1;
     }
 
     @Override

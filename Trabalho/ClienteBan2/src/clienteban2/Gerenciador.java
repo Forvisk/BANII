@@ -111,15 +111,20 @@ public class Gerenciador {
 
                 String cIn = entry.get("est_dt_checkin");
                 String cOut = entry.get("est_dt_checkout");
+                Reserva reserva = null;
 
-                int codigoReserva = Integer.parseInt(entry.get("res_fk_codigo"));
+                if (entry.containsKey("res_fk_codigo")) {
+                    if (entry.get("res_fk_codigo") != null) {
+                        int codigoReserva = Integer.parseInt(entry.get("res_fk_codigo"));
+                        reserva = reservas.get(codigoReserva);
+                    }
+                }
                 int codigoCliente = Integer.parseInt(entry.get("cli_fk_codigo"));
                 int codigoQuarto = Integer.parseInt(entry.get("qua_fk_numero"));
                 int codigoHotel = Integer.parseInt(entry.get("hot_fk_codigo"));
 
                 Quarto quarto = hoteis.get(codigoHotel).getQuartos().get(codigoQuarto);
                 Cliente cliente = clientes.get(codigoCliente);
-                Reserva reserva = reservas.get(codigoReserva);
 
                 try {
                     // Nao tem, entao vamos criar um novo
@@ -137,9 +142,6 @@ public class Gerenciador {
             Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (Estadia r : estadias.values()) {
-            System.out.println(r);
-        }
     }
 
     private void pushReservas() {
@@ -183,9 +185,6 @@ public class Gerenciador {
             Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
         }
 
-        for (Estadia r : estadias.values()) {
-            System.out.println(r);
-        }
     }
 
     private void pushServicos() {
@@ -311,8 +310,10 @@ public class Gerenciador {
                 } else {
                     try {
                         // Nao tem, entao vamos criar um novo
+                        System.out.println(hotel);
                         Funcionario fun = new Funcionario(codigo, nome, telefone, cpf, local, cargo, estado, hotel);
                         if (hotel != null) {
+                            System.out.println("Ele tem :3");
                             hotel.addFuncionario(fun);
                         }
                         this.funcionarios.put(codigo, fun);
@@ -552,6 +553,14 @@ public class Gerenciador {
 
     void addReserva(Reserva reserva) {
         reservas.put(reserva.getCodigo(), reserva);
+    }
+
+    void addEstadia(Estadia estadia) {
+        estadias.put(estadia.getCodigo(), estadia);
+    }
+
+    void addServico(Servico cli) {
+        servicos.put(cli.getCodigo(), cli);
     }
 
 }

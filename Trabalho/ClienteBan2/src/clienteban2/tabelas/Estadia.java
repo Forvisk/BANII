@@ -5,6 +5,7 @@
  */
 package clienteban2.tabelas;
 
+import clienteban2.Gerenciador;
 import java.sql.Date;
 
 /**
@@ -12,14 +13,30 @@ import java.sql.Date;
  * @author gustavo
  */
 public class Estadia {
+
     private int codigo;
-    
+
     private Quarto quarto;
     private Cliente cliente;
     private Reserva reserva;
-    
+
     private String checkIn;
     private String checkOut;
+
+    public static Estadia criarEstadia(Quarto quarto, Cliente cliente, Reserva reserva, String text, String text0) {
+        return new Estadia(getNextId(), quarto, cliente, reserva, text, text0);
+     
+    }
+
+    public static int getNextId() {
+        int lastId = 0;
+        for (int res : Gerenciador.getInstancia().getEstadias().keySet()) {
+            if (lastId < res) {
+                lastId = res;
+            }
+        }
+        return lastId + 1;
+    }
 
     public Estadia(int codigo, Quarto quarto, Cliente cliente, Reserva reserva, String checkIn, String checkOut) {
         this.codigo = codigo;
@@ -45,7 +62,7 @@ public class Estadia {
     public void setQuarto(Quarto quarto) {
         this.quarto = quarto;
     }
-    
+
     public Cliente getCliente() {
         return cliente;
     }
@@ -77,6 +94,15 @@ public class Estadia {
     public void setCheckOut(String checkOut) {
         this.checkOut = checkOut;
     }
-    
-    
+
+    public String insertQuery() throws Exception {
+        return "INSERT INTO estadia VALUES (" + this.codigo
+                + ", \'" + this.quarto.getNumero() + "\'"
+                + ", \'" + this.quarto.getHotel().getCodigo() + "\'"
+                + ", \'" + this.cliente.getCodigo() + "\'"
+                + ", " + (this.reserva == null ? "NULL" : this.reserva.getCodigo()) + ""
+                + ", \'" + this.checkIn + "\'"
+                + ", \'" + this.checkOut + "\');";
+    }
+
 }
