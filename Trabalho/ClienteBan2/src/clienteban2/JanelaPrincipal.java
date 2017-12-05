@@ -13,7 +13,9 @@ import clienteban2.tabelas.Quarto;
 import clienteban2.tabelas.Reserva;
 import clienteban2.tabelas.Servico;
 import clienteban2.tabelas.ServicoPrestado;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -611,6 +613,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
         tEstadia = new javax.swing.JTable();
         jEDeletar = new javax.swing.JButton();
         jEAdicionar = new javax.swing.JButton();
+        jECheckOut = new javax.swing.JButton();
         jPanel7 = new javax.swing.JPanel();
         jScrollPane8 = new javax.swing.JScrollPane();
         tServicos = new javax.swing.JTable();
@@ -1243,6 +1246,13 @@ public class JanelaPrincipal extends javax.swing.JFrame {
             }
         });
 
+        jECheckOut.setText("Check Out");
+        jECheckOut.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jECheckOutActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
@@ -1253,6 +1263,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jECheckOut)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jEAdicionar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jEDeletar))
@@ -1265,7 +1277,8 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addGroup(jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jEDeletar)
-                    .addComponent(jEAdicionar))
+                    .addComponent(jEAdicionar)
+                    .addComponent(jECheckOut))
                 .addContainerGap(28, Short.MAX_VALUE))
         );
 
@@ -1763,7 +1776,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-        if (tTabela1.getSelectedRowCount() == 0){
+        if (tTabela1.getSelectedRowCount() == 0) {
             JOptionPane.showMessageDialog(this, "Por favor, escolha um hotel!", "Falha ao adicionar funcionario", JOptionPane.ERROR_MESSAGE);
             return;
         }
@@ -1774,11 +1787,29 @@ public class JanelaPrincipal extends javax.swing.JFrame {
                 .getInstancia()
                 .getHoteis()
                 .get(codigo);
-        
+
         JanelaInserirFuncionarioHotel jsp = new JanelaInserirFuncionarioHotel(hotel);
         jsp.setLocationRelativeTo(this);
         jsp.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jECheckOutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jECheckOutActionPerformed
+        // TODO add your handling code here:
+        int row = tEstadia.getSelectedRow();
+        int codigo = Integer.valueOf(tEstadia.getValueAt(row, 0).toString());
+
+        Estadia estadia = Gerenciador
+                .getInstancia()
+                .getEstadias()
+                .get(codigo);
+
+        SimpleDateFormat sdfDate = new SimpleDateFormat("MM-dd-yyyy");//dd/MM/yyyy
+        Date now = new Date();
+        String strDate = sdfDate.format(now);
+
+        estadia.setCheckOut(strDate);
+
+    }//GEN-LAST:event_jECheckOutActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -1802,6 +1833,7 @@ public class JanelaPrincipal extends javax.swing.JFrame {
     private javax.swing.JButton jCDeletar;
     private javax.swing.JButton jCriaQuarto;
     private javax.swing.JButton jEAdicionar;
+    private javax.swing.JButton jECheckOut;
     private javax.swing.JButton jEDeletar;
     private javax.swing.JButton jFAdicionar;
     private javax.swing.JButton jFDeletar;

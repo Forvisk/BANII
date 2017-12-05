@@ -16,7 +16,7 @@ public class TipoQuarto {
     private int codigo;
     private String nome;
 
-    private final HashMap<Hotel, Float> precos;
+    private final HashMap<Integer, Float> precos;
 
     public TipoQuarto(int codigo, String nome) {
         this.codigo = codigo;
@@ -40,7 +40,7 @@ public class TipoQuarto {
         this.nome = nome;
     }
 
-    public HashMap<Hotel, Float> getPrecos() {
+    public HashMap<Integer, Float> getPrecos() {
         return precos;
     }
 
@@ -50,8 +50,8 @@ public class TipoQuarto {
     }
 
     public String setPreco(Hotel hotel, float preco) {
-        if (precos.containsKey(hotel)) {
-            precos.put(hotel, preco);
+        if (precos.containsKey(hotel.getCodigo())) {
+            precos.put(hotel.getCodigo(), preco);
             return "UPDATE Quarto_Preco SET qpr_in_diaria = " + preco + " WHERE tqu_pfk_codigo = " + codigo + " AND hot_pfk_codigo = " + hotel.getCodigo() + ";"; 
         }
 

@@ -147,14 +147,16 @@ public class JanelaInserirFuncionarioHotel extends javax.swing.JFrame {
                     h.getHotel().getFuncionarios().remove(h.getCodigo());
                 }
 
-                ClienteBan2.getInstance().conexao.RequestChange(h.updateQuery());
-
                 h.setHotel(hotel);
                 hotel.addFuncionario(h);
+                
+                System.out.println(h.updateQuery());
+
+                ClienteBan2.getInstance().conexao.RequestChange(h.updateQuery());
 
             }
 
-            JOptionPane.showMessageDialog(this, "Valor(es) removido(s) com sucsso!", "Remoção executada", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(this, "Funcionario(s) adicionados(s) com sucsso!", "Remoção executada", JOptionPane.INFORMATION_MESSAGE);
             Gerenciador.getInstancia().clear();
             JanelaPrincipal.getInstancia().setupTabela();
         } catch (Exception e) {

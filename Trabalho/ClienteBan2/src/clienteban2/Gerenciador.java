@@ -279,8 +279,10 @@ public class Gerenciador {
                 Hotel hotel = null;
 
                 if (entry.containsKey("hot_fk_hotel")) {
-                    int codigoH = Integer.parseInt(entry.get("hot_fk_hotel"));
-                    hotel = hoteis.get(codigoH);
+                    if (entry.get("hot_fk_hotel") != null) {
+                        int codigoH = Integer.parseInt(entry.get("hot_fk_hotel"));
+                        hotel = hoteis.get(codigoH);
+                    }
                 }
 
                 if (this.funcionarios.containsKey(codigo)) {
@@ -379,18 +381,23 @@ public class Gerenciador {
                 int codigoHotel = Integer.parseInt(entry.get("hot_pfk_codigo"));
                 float preco = Float.parseFloat(entry.get("qpr_in_diaria"));
 
+                System.out.println("Tem pro hotel " + codigoHotel + " o tipo de quarto " + nome);
+
                 Hotel hotel = hoteis.get(codigoHotel);
 
-                try {
-                    TipoQuarto tquarto = new TipoQuarto(codigo, nome);
+                if (tiposDeQuartos.containsKey(codigo)) {
+                    TipoQuarto tq = tiposDeQuartos.get(codigo);
+                    tq.getPrecos().put(hotel.getCodigo(), preco);
+                } else {
+                    try {
+                        TipoQuarto tquarto = new TipoQuarto(codigo, nome);
 
-                    if (!tquarto.getPrecos().containsKey(hotel)) {
-                        tquarto.getPrecos().put(hotel, preco);
+                        tquarto.getPrecos().put(hotel.getCodigo(), preco);
+
+                        this.tiposDeQuartos.put(codigo, tquarto);
+                    } catch (Exception ex) {
+                        Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
                     }
-
-                    this.tiposDeQuartos.put(codigo, tquarto);
-                } catch (Exception ex) {
-                    Logger.getLogger(Gerenciador.class.getName()).log(Level.SEVERE, null, ex);
                 }
 
             });

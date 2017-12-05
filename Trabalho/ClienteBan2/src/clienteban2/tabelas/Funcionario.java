@@ -150,7 +150,8 @@ public class Funcionario {
                 + ", \'" + this.cpf + "\'"
                 + ", \'" + this.endereco + "\'"
                 + ", \'" + this.cargo + "\'"
-                + ", \'" + this.estado + "\');";
+                + ", \'" + this.estado + "\'"
+                + (hotel != null ? hotel.getCodigo() : "") + ");";
     }
 
     public String updateQuery() throws Exception {
@@ -161,6 +162,7 @@ public class Funcionario {
                 + ", fun_st_cpf = \'" + this.cpf + "\'"
                 + ", fun_st_cargo = \'" + this.cargo + "\'"
                 + ", fun_st_estado = \'" + this.estado + "\'"
+                + ", hot_fk_hotel = " + (hotel != null ? hotel.getCodigo() : "NULL")
                 + ", fun_st_endereco = \'" + this.endereco + "\' WHERE fun_pk_codigo = " + codigo + ";";
     }
 
